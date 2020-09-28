@@ -1,0 +1,123 @@
+.title {
+    padding: 1rem;
+    hr {
+        margin-bottom: 0.5rem;
+    }
+    .title-bg {
+        .title-name {
+            padding: 0;
+            h3 {
+                font-size: 1.5rem;
+            }
+        }
+        .title-ratings {
+            font-size: 1.6rem;
+            padding: 0;
+            margin: auto;
+            margin-top: 0.5rem;
+            width: 50%;
+            text-align: center;
+            img {
+                width: 1.5rem;
+                margin-top: -0.4rem;
+                margin-right: 0.5rem;
+            }
+        }
+        .title-poster {
+            margin-top: 1rem;
+            img {
+                width: 30%;
+                border-radius: 5%;
+            }
+            .title-trailer {
+                margin-left: 2%;
+                width: 68%;
+                border-radius: 5%;
+            }
+        }
+        .small-info {
+            padding-top: 0.25rem;
+        }
+    }
+    .title-info {
+        margin-top: 1rem;
+        .reviews {
+            margin-bottom: 1.5rem;
+            img {
+                width: 1.1rem;
+                margin-top: -0.2rem;
+                margin-left: 0.5rem;
+            }
+        }
+    }
+    .form-review {
+        margin-bottom: 0;
+        padding: 1rem 0 1rem 0;
+        input {
+            margin-bottom: 0.5rem;
+            background-color: #fafafa;
+        }
+        textarea {
+            margin-bottom: 0.5rem;
+            resize: none;
+            background-color: #fafafa;
+        }
+        .rating {
+            input {
+                display: inline;
+                margin-left: 5rem;
+                opacity: 0;
+            }
+            img {
+                cursor: pointer;
+                width: 2rem;
+                &:hover{
+                    filter: none;
+                    transform: rotate(20deg);
+                }
+            }
+            .filter{
+                filter: grayscale(80%);
+            }
+        }
+        button {
+            margin-top: 0.5rem;
+        }
+    }
+    p {
+        &:first-child {
+            margin-top: 1rem;
+        }
+        &:nth-child(6),
+        &:nth-child(4) {
+            text-align: justify;
+        }
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .title {
+        .title-bg {
+            padding-bottom: 0.5rem;
+            .title-name {
+                h3 {
+                    font-size: 1.25rem;
+                }
+            }
+        }
+        .title-info {
+            margin: 0;
+        }
+        .col-12 {
+            padding: 0;
+            .title-ratings {
+                font-size: 1rem;
+                span {
+                    img {
+                        width: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}

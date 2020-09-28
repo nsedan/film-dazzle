@@ -1,0 +1,42 @@
+<section class="popular">
+	<h3>Popular titles</h3>
+	<hr />
+    <small>Recently reviewed</small>
+	<div class="row popular-list">
+		<ul class="list-group list-group-horizontal-md">
+			{%for title in titles%}
+			<li>
+				<div class="title-block">
+					<div class="title-poster">
+						<a href="{{url_for('add_title', users_choice=title.imdb_id)}}">
+							<img
+                                src="{{title.poster}}"
+                                alt="{{title.title}} movie poster"
+                                class="poster"
+                            />
+                        </a>
+							<p>{{title.title}}</p>
+					</div>
+					<div class="title-ratings">
+						<span
+                            ><img
+                                src="{{ url_for('static', filename='favicon/favicon.png') }}"
+                                alt="TGMB."
+                            />{{title.users_rating}}</span>
+						<span
+                            ><img
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/IMDb_Logo_Square.svg/1200px-IMDb_Logo_Square.svg.png"
+                                alt="imdb"
+                            />{{title.imdb_rating}}</span>
+						<span
+                            ><img
+                                src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Metacritic_M.png"
+                                alt="metascore"
+                            />{{title.metascore}}</span>
+					</div>
+				</div>
+			</li>
+			{%endfor%}
+		</ul>
+	</div>
+</section>

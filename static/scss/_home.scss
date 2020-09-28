@@ -1,0 +1,91 @@
+.popular {
+    padding: 0.5rem 1.5rem 0 1.5rem;
+    margin: 0;
+    .popular-list {
+        padding: 1rem 0 1.5rem 0;
+        overflow-x: auto;
+        .title-block {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            .title-poster {
+                .poster {
+                    width: 10rem;
+                    height: 15rem;
+                    border-radius: 5%;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+                p {
+                    text-align: center;
+                    margin: 0;
+                }
+            }
+            .title-ratings {
+                text-align: center;
+                span {
+                    padding-right: 0.25rem;
+                    font-size: 1rem;
+                    img {
+                        margin-right: 3px;
+                        width: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.carousel {
+    ol {
+        li {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: $secondary-color;
+        }
+    }
+    .fa-chevron-right,
+    .fa-chevron-left {
+        font-size: 2rem;
+        color: $secondary-color;
+    }
+    .carousel-inner {
+        .coming-soon {
+            position: absolute;
+            z-index: 999;
+            text-align: center;
+            color: #fafafa;
+            left: 0;
+            right: 0;
+            background-color: rgba($color: #000000, $alpha: 0.75);
+            border-radius: 5%;
+            padding: 5px 0 10px 0;
+        }
+        .carousel-item {
+            img {
+                width: 100%;
+                height: 25rem;
+            }
+        }
+    }
+}
+@media screen and (max-width: 770px) {
+    .popular {
+        padding: 0.5rem 1rem 0 1rem;
+        .popular-list {
+            ul {
+                flex-direction: inherit;
+            }
+        }
+    }
+    .carousel {
+        .carousel-inner {
+            .carousel-item {
+                img {
+                    height: 15rem;
+                }
+            }
+        }
+    }
+}

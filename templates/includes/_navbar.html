@@ -1,0 +1,60 @@
+<header>
+	<nav class="navbar navbar-expand-lg">
+		<a class="navbar-brand" href="/index"><img
+                src="{{ url_for('static', filename='favicon/favicon.png') }}"
+                alt="TGMB."
+            />GMB.</a>
+			<button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav m-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/index">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/box_office">Box Office</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/randomize">Randomize</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Ratings
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="/top_imdb">Top IMDb</a>
+							<a class="dropdown-item" href="/top_metacritic">Top Metacritic</a>
+							<a class="dropdown-item" href="/top_users">Top Users</a>
+						</div>
+					</li>
+				</ul>
+				<div class="search-bar">
+					<form class="form-inline" action="/search" method="POST" autocomplete="off">
+						<input
+                        class="form-control mr-sm-2"
+                        id="search"
+                        name="query"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                        autofocus
+                        required
+                    />
+						<button class="btn btn-search my-2 my-sm-0" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+					</form>
+				</div>
+			</div>
+	</nav>
+</header>

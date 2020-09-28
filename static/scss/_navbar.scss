@@ -1,0 +1,58 @@
+.navbar {
+    background-color: $primary-color;
+    .navbar-brand {
+        font-family: "Roboto", sans-serif;
+        font-weight: 900;
+        font-style: italic;
+        font-size: 2rem;
+        color: #fafafa;
+        img {
+            width: 2.5rem;
+            padding-right: 0.5rem;
+            padding-bottom: 0.3rem;
+        }
+    }
+    .navbar-toggler {
+        margin-top: 0.25rem;
+        .fa-bars {
+            font-size: 2rem;
+            color: lighten($primary-color, 70%);
+        }
+    }
+    .navbar-collapse {
+        .nav-link {
+            color: lighten($primary-color, 70%);
+            padding: 1rem; 
+            &:hover {
+                color: lighten($primary-color, 90%);
+            }
+        }
+    }
+}
+
+.search-bar {
+    input {
+        background-color: #fafafa;
+    }
+    .btn-search {
+        background-color: lighten($primary-color, 50%);
+        &:hover {
+            background-color: lighten($primary-color, 70%);
+        }
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .navbar {
+        .nav-link {
+            padding-left: 1rem;
+        }
+    }
+    .search-bar {
+        padding-left: 1rem;
+        .form-control {
+            width: 12rem;
+            margin-right: 10px;
+        }
+    }
+}

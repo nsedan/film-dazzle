@@ -1,0 +1,27 @@
+{% extends 'index.html' %} {% block body %}
+<main class="container">
+	<h3>
+		Top results for "<span style="text-transform: capitalize;"
+            >{{query}}</span>"
+	</h3>
+	<hr>
+	{% for result in data_request %}
+	<div class="row result-info">
+		<ul class="col-sm-12 col-lg-4 result-ul">
+			<li>
+				{% set poster = result['poster'] %} {% if poster == 'N/A' %}
+				<img
+                    src="https://www.freeiconspng.com/uploads/no-image-icon-4.png"
+                    alt="no image was found"
+                />
+                {% else %} {% set show = poster %}
+				<a href="{{url_for('add_title', users_choice=result.imdb_id)}}"><img src="{{show}}" alt="movie poster"
+                /></a>
+					{% endif %}
+					<p>{{result.title}} <small>({{result.year}})</small></p>
+			</li>
+		</ul>
+	</div>
+	{% endfor%}
+</main>
+{% endblock%}

@@ -1,0 +1,22 @@
+.error-404 {
+  background-color: lighten($primary-color, 5%);
+  color: white;
+  text-align: center;
+  h1 {
+    font-family: "Titillium Web", sans-serif;
+    font-size: 15rem;
+  }
+  p {
+    margin: 0;
+    padding: 0 12rem 5rem 12rem;
+  }
+}
+
+@media screen and (max-width: 770px) {
+    .error-404{
+        padding: 5rem 0;
+        p{
+            padding: 0 2rem 2rem 2rem;
+        }
+    }
+}

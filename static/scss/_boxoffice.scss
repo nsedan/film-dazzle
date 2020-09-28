@@ -1,0 +1,21 @@
+.box-office {
+    table {
+        margin-top: 0.5rem;
+        thead {
+            background-color: lighten($primary-color, 50%);
+        }
+        tr {
+            td,
+            th {
+                padding: 0.5rem;
+                a {
+                    color: $primary-color;
+                    &:hover {
+                        text-decoration: none;
+                        color: lighten($primary-color, 50%);
+                    }
+                }
+            }
+        }
+    }
+}
