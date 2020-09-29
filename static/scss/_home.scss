@@ -1,7 +1,7 @@
-.popular {
-    padding: 0.5rem 1.5rem 0 1.5rem;
+.top-titles {
+    padding: 1rem 1.5rem;
     margin: 0;
-    .popular-list {
+    .top-titles-list {
         padding: 1rem 0 1.5rem 0;
         overflow-x: auto;
         .title-block {
@@ -19,6 +19,9 @@
                 p {
                     text-align: center;
                     margin: 0;
+                    &:first-of-type{
+                        font-weight: 600;
+                    }
                 }
             }
             .title-ratings {
@@ -71,9 +74,9 @@
     }
 }
 @media screen and (max-width: 770px) {
-    .popular {
-        padding: 0.5rem 1rem 0 1rem;
-        .popular-list {
+    .top-titles {
+        padding: 0.5rem 1rem;
+        .top-titles-list {
             ul {
                 flex-direction: inherit;
             }

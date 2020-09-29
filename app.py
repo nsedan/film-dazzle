@@ -53,7 +53,20 @@ def index():
         titles = mongo.db.titles.find_one({'imdb_id': ids})
         titles_list.append(titles)
 
-    return render_template("index.html", titles=titles_list[0:10])
+    # Top Box Office
+    boxoffice = mongo.db.boxoffice.find().limit(10)
+    titles = mongo.db.titles.find()
+    boxoffice_limited = []
+
+    for bo in boxoffice:
+        imdb_id = bo['imdb_id']
+        titles = mongo.db.titles.find_one({'imdb_id': imdb_id})
+        poster = titles['poster']
+        bo['poster'] = poster
+        boxoffice_limited.append(bo)
+
+    return render_template("index.html", titles=titles_list[0:10],
+                           boxoffice=boxoffice_limited)
 
 
 @app.route('/search', methods=["GET", "POST"])

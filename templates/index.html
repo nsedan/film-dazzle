@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
 	<link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon/favicon.png') }}" />
     <script src="https://kit.fontawesome.com/772e52f795.js" crossorigin="anonymous"></script>
-	<title>Film Dazzle.| Ratings, Reviews and More</title>
+	<title>Film Dazzle | Ratings, Reviews and More</title>
 </head>
 
 <body>
@@ -18,6 +18,7 @@
 			{% block body %}
                 {% include 'includes/_carousel.html' %}
                 {% include 'includes/_popular.html' %} 
+                {% include 'includes/_boxoffice.html' %} 
             {% endblock%}
         {% include 'includes/_footer.html' %}
 	</div>

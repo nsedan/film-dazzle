@@ -19,3 +19,9 @@
         }
     }
 }
+
+@media screen and (max-width: 320px) {
+    .boxoffice-year{
+        display: none;
+    }
+}

@@ -348,7 +348,8 @@
         "domestic": 48,
         "foreign_gross": "$558.941.706",
         "foreign": 52,
-        "year": 2019
+        "year": 2019,
+        "imdb_id": "tt2527338"
     },
     {
         "rank": 33,
@@ -1001,13 +1002,14 @@
     },
     {
         "rank": 92,
-        "title": 2012,
+        "title": "2012",
         "worldwide_gross": "$791.217.826",
         "domestic_gross": "$166.112.167",
         "domestic": 21,
         "foreign_gross": "$625.105.659",
         "foreign": 79,
-        "year": 2009
+        "year": 2009,
+        "imdb_id": "tt1190080"
     },
     {
         "rank": 93,

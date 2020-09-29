@@ -1,0 +1,26 @@
+<section class="top-titles">
+	<h3>Top Box Office</h3>
+	<hr />
+	<small class="pl-2">Box Office Success</small>
+	<div class="row top-titles-list">
+		<ul class="list-group list-group-horizontal-md">
+			{%for title in boxoffice %}
+			<li>
+				<div class="title-block">
+					<div class="title-poster">
+						<a href="{{url_for('add_title', users_choice=title.imdb_id)}}">
+							<img
+                                src="{{title.poster}}"
+                                alt="{{title.title}} movie poster"
+                                class="poster"
+                            />
+                        </a>
+							<p>{{title.title}}</p>
+							<p>{{title.worldwide_gross}}</p>
+					</div>
+				</div>
+			</li>
+			{%endfor%}
+		</ul>
+	</div>
+</section>

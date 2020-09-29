@@ -338,19 +338,19 @@ footer p {
     margin: 0;
   }
 }
-.popular {
-  padding: 0.5rem 1.5rem 0 1.5rem;
+.top-titles {
+  padding: 1rem 1.5rem;
   margin: 0;
 }
-.popular .popular-list {
+.top-titles .top-titles-list {
   padding: 1rem 0 1.5rem 0;
   overflow-x: auto;
 }
-.popular .popular-list .title-block {
+.top-titles .top-titles-list .title-block {
   padding-left: 1rem;
   padding-right: 1rem;
 }
-.popular .popular-list .title-block .title-poster .poster {
+.top-titles .top-titles-list .title-block .title-poster .poster {
   width: 10rem;
   height: 15rem;
   border-radius: 5%;
@@ -358,18 +358,21 @@ footer p {
   margin-left: auto;
   margin-right: auto;
 }
-.popular .popular-list .title-block .title-poster p {
+.top-titles .top-titles-list .title-block .title-poster p {
   text-align: center;
   margin: 0;
 }
-.popular .popular-list .title-block .title-ratings {
+.top-titles .top-titles-list .title-block .title-poster p:first-of-type {
+  font-weight: 600;
+}
+.top-titles .top-titles-list .title-block .title-ratings {
   text-align: center;
 }
-.popular .popular-list .title-block .title-ratings span {
+.top-titles .top-titles-list .title-block .title-ratings span {
   padding-right: 0.25rem;
   font-size: 1rem;
 }
-.popular .popular-list .title-block .title-ratings span img {
+.top-titles .top-titles-list .title-block .title-ratings span img {
   margin-right: 3px;
   width: 1rem;
 }
@@ -402,10 +405,10 @@ footer p {
 }
 
 @media screen and (max-width: 770px) {
-  .popular {
-    padding: 0.5rem 1rem 0 1rem;
+  .top-titles {
+    padding: 0.5rem 1rem;
   }
-  .popular .popular-list ul {
+  .top-titles .top-titles-list ul {
     flex-direction: inherit;
   }
 
@@ -433,6 +436,11 @@ footer p {
   color: #949494;
 }
 
+@media screen and (max-width: 320px) {
+  .boxoffice-year {
+    display: none;
+  }
+}
 .error-404 {
   background-color: #212121;
   color: white;
