@@ -138,7 +138,7 @@ def title(title_id):
     imdb_id = title['imdb_id']
     reviews = list(mongo.db.reviews.find({'imdb_id': imdb_id}))
     sorted_reviews = sorted(reviews, key=lambda k: k['date'], reverse=True)
-    limited_reviews = sorted_reviews[0:5]
+    limited_reviews = sorted_reviews[0:10]
 
     if not id_exists:
         return render_template("404.html")
@@ -198,7 +198,7 @@ def review(review_choice):
 
 @app.route('/top_imdb')
 def top_imdb():
-    titles = list(mongo.db.titles.find())
+    titles = list(mongo.db.titles.find().limit(10))
     sorted_titles = sorted(titles, key=lambda k: k['imdb_rating'],
                            reverse=True)
     sorted_titles_list = []
@@ -210,7 +210,7 @@ def top_imdb():
 
 @app.route('/top_metacritic')
 def top_metacritic():
-    titles = list(mongo.db.titles.find())
+    titles = list(mongo.db.titles.find().limit(10))
     sorted_titles = sorted(titles, key=lambda k: k['metascore'],
                            reverse=True)
     sorted_titles_list = []
@@ -222,7 +222,7 @@ def top_metacritic():
 
 @app.route('/top_users')
 def top_users():
-    titles = list(mongo.db.titles.find())
+    titles = list(mongo.db.titles.find().limit(10))
     sorted_titles = sorted(titles, key=lambda k: k['users_rating'],
                            reverse=True)
     sorted_titles_list = []

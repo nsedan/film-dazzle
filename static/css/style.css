@@ -249,6 +249,18 @@ footer p {
 .title .form-review button {
   margin-top: 0.5rem;
 }
+.title .reviews li {
+  margin-bottom: 0.5rem;
+}
+.title .reviews li a {
+  color: #141414;
+}
+.title .reviews li a span:first-of-type {
+  font-weight: 500;
+}
+.title .reviews li a:hover {
+  color: #949494;
+}
 .title p:first-child {
   margin-top: 1rem;
 }
@@ -308,24 +320,34 @@ footer p {
 
 .top-ratings {
   padding-top: 1.5rem;
+  padding-left: 2rem;
+  display: inline-flex;
 }
-.top-ratings img {
+.top-ratings ul {
+  padding: 0;
+}
+.top-ratings ul li {
+  max-width: 300px;
+  margin-bottom: 1rem;
+}
+.top-ratings ul li .poster {
   width: 100%;
   height: 100%;
+  max-height: 450px;
   border-radius: 5%;
 }
-.top-ratings .title-ratings {
+.top-ratings ul li .title-ratings {
   text-align: center;
 }
-.top-ratings .title-ratings span {
+.top-ratings ul li .title-ratings span {
   padding-right: 1rem;
   font-size: 1.25rem;
 }
-.top-ratings .title-ratings span img {
+.top-ratings ul li .title-ratings span img {
   margin-right: 3px;
   width: 1.5rem;
 }
-.top-ratings p {
+.top-ratings ul li p {
   text-align: center;
   padding-top: 0.5rem;
   font-weight: 700;
@@ -336,6 +358,7 @@ footer p {
 @media screen and (max-width: 770px) {
   .top-ratings {
     margin: 0;
+    display: block;
   }
 }
 .top-titles {
