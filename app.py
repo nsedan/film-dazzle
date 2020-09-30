@@ -3,7 +3,6 @@ import random
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from datetime import datetime
-from pprint import pprint
 import requests
 import omdb
 import uuid
