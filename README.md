@@ -23,7 +23,15 @@ Additionally, the next technologies were used:
 
 - [Flask](https://flask.palletsprojects.com/)
 
-  - This project uses **Flask** for template routing.
+  - This project uses **Flask** for routing.
+
+- [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
+
+  - This project uses **Jinja** as templating language.
+
+- [PyMongo](https://pymongo.readthedocs.io/en/stable/)
+
+  - This project uses **PyMongo** to handle the interaction between Python and MongoDB.
 
 - [MongoDB](https://www.mongodb.com/)
 
@@ -40,6 +48,10 @@ Additionally, the next technologies were used:
 - [JQuery](https://jquery.com)
 
   - This project uses **JQuery** to simplify DOM manipulation.
+
+- [Heroku](https://www.heroku.com/)
+
+  - This project uses **Heroku** to host the app.
 
 #### Code Validation
 
