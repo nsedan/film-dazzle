@@ -1,15 +1,18 @@
 import os
 import random
-from flask import Flask, render_template, redirect, request, url_for
-from flask_pymongo import PyMongo
 from datetime import datetime
 import requests
+
 import omdb
 import uuid
-from os import path
-if path.exists("env.py"):
+
+from flask import Flask, render_template, redirect, request, url_for
+from flask_pymongo import PyMongo
+
+if os.path.exists("env.py"):
     import env
 
+from pprint import pprint
 
 app = Flask(__name__)
 
@@ -29,9 +32,10 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/index')
 def index():
-    # Popular titles based on reviews
+    """Popular titles based on latest reviews"""
     reviews = mongo.db.reviews.find()
-    sorted_reviews = sorted(reviews, key=lambda k: k['date'], reverse=True)
+    sorted_reviews = sorted(reviews, key=lambda k: k['_id'], reverse=True)
+    pprint(sorted_reviews)
 
     # Avoid duplicates
     duplicates_list = []
@@ -122,10 +126,9 @@ def add_title(users_choice):
         titles.insert_one(data_reduced)
         find_imdb_id = titles.find_one({'imdb_id': users_choice})
         imdb_id = find_imdb_id['imdb_id']
-        return redirect(url_for('title', title_id=imdb_id))
     else:
         imdb_id = title_exists.get('imdb_id')
-        return redirect(url_for('title', title_id=imdb_id))
+    return redirect(url_for('title', title_id=imdb_id))
 
 
 @app.route('/title/<title_id>')
@@ -136,7 +139,7 @@ def title(title_id):
     # Load Reviews
     imdb_id = title['imdb_id']
     reviews = list(mongo.db.reviews.find({'imdb_id': imdb_id}))
-    sorted_reviews = sorted(reviews, key=lambda k: k['date'], reverse=True)
+    sorted_reviews = sorted(reviews, key=lambda k: k['_id'], reverse=True)
     limited_reviews = sorted_reviews[0:10]
 
     if not id_exists:
