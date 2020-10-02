@@ -1,58 +1,70 @@
 .navbar {
-    background-color: $primary-color;
-    .navbar-brand {
-        font-family: "Roboto", sans-serif;
-        font-weight: 900;
-        font-style: italic;
-        font-size: 2rem;
-        color: #fafafa;
-        img {
-            width: 2.5rem;
-            padding-right: 0.5rem;
-            padding-bottom: 0.3rem;
-        }
+  background-color: $primary-color;
+  .navbar-brand {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 2rem;
+    color: #fafafa;
+    img {
+      width: 2.5rem;
+      padding-right: 0.5rem;
+      padding-bottom: 0.3rem;
     }
-    .navbar-toggler {
-        margin-top: 0.25rem;
-        .fa-bars {
-            font-size: 2rem;
-            color: lighten($primary-color, 70%);
-        }
+  }
+  .navbar-toggler {
+    margin-top: 0.25rem;
+    .fa-bars {
+      font-size: 2rem;
+      color: lighten($primary-color, 70%);
     }
-    .navbar-collapse {
-        .nav-link {
-            color: lighten($primary-color, 70%);
-            padding: 1rem; 
-            &:hover {
-                color: lighten($primary-color, 90%);
-            }
-        }
+  }
+  .navbar-collapse {
+    .nav-link {
+      color: lighten($primary-color, 70%);
+      padding: 1rem;
+      &:hover {
+        color: lighten($primary-color, 90%);
+      }
     }
+  }
 }
 
 .search-bar {
-    input {
-        background-color: #fafafa;
+  margin-right: 1rem;
+  .btn-search {
+    width: 2.5rem;
+    background-color: lighten($primary-color, 70%);
+    &:hover {
+      color: #fafafa;
+      background-color: lighten($primary-color, 50%);
     }
-    .btn-search {
-        background-color: lighten($primary-color, 50%);
-        &:hover {
-            background-color: lighten($primary-color, 70%);
-        }
-    }
+  }
+  .dropdown-item,
+  .dropdown-menu {
+    padding: 0;
+  }
+}
+
+.btn-login {
+  width: 2.5rem;
+  background-color: lighten($primary-color, 70%);
+  &:hover {
+    color: #fafafa;
+    background-color: lighten($primary-color, 50%);
+  }
 }
 
 @media screen and (max-width: 770px) {
-    .navbar {
-        .nav-link {
-            padding-left: 1rem;
-        }
+  .navbar {
+      padding-bottom: 1rem;
+    .nav-link {
+      padding-left: 1rem;
     }
-    .search-bar {
-        padding-left: 1rem;
-        .form-control {
-            width: 12rem;
-            margin-right: 10px;
-        }
-    }
+  }
+  .search-bar,
+  .login {
+    padding-top: 0.5rem;
+    padding-left: 1rem;
+  }
 }

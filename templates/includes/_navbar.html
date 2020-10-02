@@ -47,32 +47,45 @@
           </div>
         </li>
       </ul>
-      <div class="search-bar">
-        <form
-          class="form-inline"
-          action="/search"
-          method="POST"
-          autocomplete="off"
-        >
-          <input
-            class="form-control mr-sm-2"
+      <div class="row">
+        <div class="dropdown search-bar">
+          <button
+            class="btn btn-search"
+            type="button"
             id="search"
-            name="query"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            autofocus
-            required
-          />
-          <button class="btn btn-search my-2 my-sm-0" type="submit">
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
             <i class="fas fa-search"></i>
           </button>
-        </form>
-      </div>
-      <div class="login">
-        <button class="btn btn-login my-2 my-sm-0">
-          <i class="fas fa-user"><a href="#"></a></i>
-        </button>
+          <div class="dropdown-menu" aria-labelledby="search">
+            <div class="dropdown-item">
+              <form
+                class="form-inline"
+                action="/search"
+                method="POST"
+                autocomplete="off"
+              >
+                <input
+                  class="form-control"
+                  id="search"
+                  name="query"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  autofocus
+                  required
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="login">
+          <button class="btn btn-login">
+            <i class="fas fa-user"><a href="#"></a></i>
+          </button>
+        </div>
       </div>
     </div>
   </nav>

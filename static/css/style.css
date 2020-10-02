@@ -122,27 +122,43 @@ footer p {
   color: #fafafa;
 }
 
-.search-bar input {
-  background-color: #fafafa;
+.search-bar {
+  margin-right: 1rem;
 }
 .search-bar .btn-search {
-  background-color: #949494;
+  width: 2.5rem;
+  background-color: #c7c7c7;
 }
 .search-bar .btn-search:hover {
+  color: #fafafa;
+  background-color: #949494;
+}
+.search-bar .dropdown-item,
+.search-bar .dropdown-menu {
+  padding: 0;
+}
+
+.btn-login {
+  width: 2.5rem;
   background-color: #c7c7c7;
+}
+.btn-login:hover {
+  color: #fafafa;
+  background-color: #949494;
 }
 
 @media screen and (max-width: 770px) {
+  .navbar {
+    padding-bottom: 1rem;
+  }
   .navbar .nav-link {
     padding-left: 1rem;
   }
 
-  .search-bar {
+  .search-bar,
+.login {
+    padding-top: 0.5rem;
     padding-left: 1rem;
-  }
-  .search-bar .form-control {
-    width: 12rem;
-    margin-right: 10px;
   }
 }
 .result-info {
