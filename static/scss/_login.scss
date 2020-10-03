@@ -1,0 +1,21 @@
+.form-signin {
+    margin: 3rem 20rem 5rem 20rem;
+    img {
+        width: 5rem;
+    }
+    input {
+        margin: 1rem 0;
+    }
+}
+
+@media screen and(max-width: 770px) {
+    .form-signin {
+        margin: 2rem 5rem;
+        h1 {
+            font-size: 1rem;
+        }
+        img {
+            width: 4rem;
+        }
+    }
+}

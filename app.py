@@ -12,7 +12,6 @@ from flask_pymongo import PyMongo
 if os.path.exists("env.py"):
     import env
 
-from pprint import pprint
 
 app = Flask(__name__)
 
@@ -35,7 +34,6 @@ def index():
     """Popular titles based on latest reviews"""
     reviews = mongo.db.reviews.find()
     sorted_reviews = sorted(reviews, key=lambda k: k['_id'], reverse=True)
-    pprint(sorted_reviews)
 
     # Avoid duplicates
     duplicates_list = []
@@ -70,6 +68,11 @@ def index():
 
     return render_template("index.html", titles=titles_list[0:10],
                            boxoffice=boxoffice_limited)
+
+
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    return render_template("login.html")
 
 
 @app.route('/search', methods=["GET", "POST"])

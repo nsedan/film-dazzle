@@ -138,15 +138,6 @@ footer p {
   padding: 0;
 }
 
-.btn-login {
-  width: 2.5rem;
-  background-color: #c7c7c7;
-}
-.btn-login:hover {
-  color: #fafafa;
-  background-color: #949494;
-}
-
 @media screen and (max-width: 770px) {
   .navbar {
     padding-bottom: 1rem;
@@ -155,8 +146,7 @@ footer p {
     padding-left: 1rem;
   }
 
-  .search-bar,
-.login {
+  .search-bar {
     padding-top: 0.5rem;
     padding-left: 1rem;
   }
@@ -478,6 +468,27 @@ footer p {
 @media screen and (max-width: 320px) {
   .boxoffice-year {
     display: none;
+  }
+}
+.form-signin {
+  margin: 3rem 20rem 5rem 20rem;
+}
+.form-signin img {
+  width: 5rem;
+}
+.form-signin input {
+  margin: 1rem 0;
+}
+
+@media screen and (max-width: 770px) {
+  .form-signin {
+    margin: 2rem 5rem;
+  }
+  .form-signin h1 {
+    font-size: 1rem;
+  }
+  .form-signin img {
+    width: 4rem;
   }
 }
 .error-404 {

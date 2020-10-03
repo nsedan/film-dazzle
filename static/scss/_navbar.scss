@@ -46,15 +46,6 @@
   }
 }
 
-.btn-login {
-  width: 2.5rem;
-  background-color: lighten($primary-color, 70%);
-  &:hover {
-    color: #fafafa;
-    background-color: lighten($primary-color, 50%);
-  }
-}
-
 @media screen and (max-width: 770px) {
   .navbar {
       padding-bottom: 1rem;
@@ -62,8 +53,7 @@
       padding-left: 1rem;
     }
   }
-  .search-bar,
-  .login {
+  .search-bar {
     padding-top: 0.5rem;
     padding-left: 1rem;
   }
