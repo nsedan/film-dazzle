@@ -73,18 +73,19 @@ def index():
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
-    get_username = request.form.get('username')
-    get_password = request.form.get('password')
+    if request.method == 'POST':
+        get_username = request.form.get('username')
+        get_password = request.form.get('password')
 
-    users = mongo.db.users
-    user_exists = users.find_one({'username': get_username})
+        users = mongo.db.users
+        user_exists = users.find_one({'username': get_username})
 
-    if user_exists:
-        if bcrypt.hashpw(get_password.encode('utf-8'),
-                         user_exists['password']) == user_exists['password']:
-            return redirect(url_for('index'))
+        if user_exists:
+            if bcrypt.hashpw(get_password.encode('utf-8'),
+                             user_exists['password']) == user_exists['password']:
+                return redirect(url_for('index'))
 
-    flash('Invalid username/password combination')
+        flash('Invalid username/password combination')
     return render_template("login.html")
 
 
@@ -105,7 +106,6 @@ def register():
             return redirect(url_for('index'))
 
         flash('That username already exists!')
-
     return render_template('register.html')
 
 
