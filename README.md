@@ -75,6 +75,7 @@ For code validation [w3 Validation Service](https://w3.org/) was used for HTML a
 - To [Stack Overflow](https://stackoverflow.com/)
 - To [OMDb API](http://www.omdbapi.com/)
 - To [Font Awesome](https://fontawesome.com/)
+- To [Pretty Printed](https://prettyprinted.com/)
 
 #### Acknowledgements
 

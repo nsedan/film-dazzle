@@ -479,6 +479,9 @@ footer p {
 .form-signin input {
   margin: 1rem 0;
 }
+.form-signin div {
+  margin-top: 0.25rem;
+}
 
 @media screen and (max-width: 770px) {
   .form-signin {

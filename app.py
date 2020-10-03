@@ -4,6 +4,7 @@ from datetime import datetime
 import requests
 
 import omdb
+import bcrypt
 import uuid
 
 from flask import Flask, render_template, redirect, request, url_for
@@ -72,12 +73,39 @@ def index():
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
+    get_username = request.form.get('username')
+    get_password = request.form.get('password')
+
+    users = mongo.db.users
+    user_exists = users.find_one({'username': get_username})
+
+    if user_exists:
+        if bcrypt.hashpw(get_password.encode('utf-8'), user_exists['password']) == user_exists['password']:
+            print('user_exists')
+            return redirect(url_for('index'))
+    print('user not exists')
     return render_template("login.html")
 
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
-    return render_template("register.html")
+    get_username = request.form.get('username')
+    get_password = request.form.get('password')
+
+    if request.method == 'POST':
+        users = mongo.db.users
+        existing_user = mongo.db.users.find_one({'username': get_username})
+
+        if not existing_user:
+            hashed_password = bcrypt.hashpw(get_password.encode('utf-8'),
+                                            bcrypt.gensalt())
+            users.insert({'username': get_username,
+                          'password': hashed_password})
+            return redirect(url_for('index'))
+
+        return 'That username already exists!'
+
+    return render_template('register.html')
 
 
 @app.route('/search', methods=["GET", "POST"])
