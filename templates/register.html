@@ -11,6 +11,15 @@
             <button class="btn btn-secondary btn-block" type="submit">
                 Submit
             </button>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-info mt-2" role="alert">
+                        <span>{{ message }}</span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
         </form>
     </section>
 {% endblock %}

@@ -7,7 +7,7 @@ import omdb
 import bcrypt
 import uuid
 
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_pymongo import PyMongo
 
 if os.path.exists("env.py"):
@@ -80,10 +80,11 @@ def login():
     user_exists = users.find_one({'username': get_username})
 
     if user_exists:
-        if bcrypt.hashpw(get_password.encode('utf-8'), user_exists['password']) == user_exists['password']:
-            print('user_exists')
+        if bcrypt.hashpw(get_password.encode('utf-8'),
+                         user_exists['password']) == user_exists['password']:
             return redirect(url_for('index'))
-    print('user not exists')
+
+    flash('Invalid username/password combination')
     return render_template("login.html")
 
 
@@ -103,7 +104,7 @@ def register():
                           'password': hashed_password})
             return redirect(url_for('index'))
 
-        return 'That username already exists!'
+        flash('That username already exists!')
 
     return render_template('register.html')
 
