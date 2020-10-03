@@ -75,6 +75,11 @@ def login():
     return render_template("login.html")
 
 
+@app.route('/register', methods=["GET", "POST"])
+def register():
+    return render_template("register.html")
+
+
 @app.route('/search', methods=["GET", "POST"])
 def search():
     if request.method == "POST":
