@@ -231,6 +231,9 @@ footer p {
   margin-bottom: 0.5rem;
   background-color: #fafafa;
 }
+.title .form-review input:first-of-type {
+  display: none;
+}
 .title .form-review textarea {
   margin-bottom: 0.5rem;
   resize: none;
@@ -261,8 +264,16 @@ footer p {
 .title .reviews li a {
   color: #141414;
 }
-.title .reviews li a span:first-of-type {
+.title .reviews li a p {
+  display: inline-block;
+  margin: 0;
+  text-transform: lowercase;
+}
+.title .reviews li a p:first-of-type {
   font-weight: 500;
+}
+.title .reviews li a p::first-letter {
+  text-transform: capitalize;
 }
 .title .reviews li a:hover {
   color: #949494;
@@ -478,9 +489,6 @@ footer p {
 }
 .form-signin input {
   margin: 1rem 0;
-}
-.form-signin div {
-  margin-top: 0.25rem;
 }
 
 @media screen and (max-width: 770px) {

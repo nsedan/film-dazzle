@@ -7,7 +7,7 @@ import omdb
 import bcrypt
 import uuid
 
-from flask import Flask, render_template, redirect, request, url_for, flash
+from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 
 if os.path.exists("env.py"):
@@ -67,6 +67,11 @@ def index():
         bo['poster'] = poster
         boxoffice_limited.append(bo)
 
+    if 'username' in session:
+        username = session['username']
+        return render_template("index.html", titles=titles_list[0:10],
+                               boxoffice=boxoffice_limited, username=username)
+
     return render_template("index.html", titles=titles_list[0:10],
                            boxoffice=boxoffice_limited)
 
@@ -83,6 +88,7 @@ def login():
         if user_exists:
             if bcrypt.hashpw(get_password.encode('utf-8'),
                              user_exists['password']) == user_exists['password']:
+                session['username'] = get_username
                 return redirect(url_for('index'))
 
         flash('Invalid username/password combination')
@@ -101,8 +107,9 @@ def register():
         if not existing_user:
             hashed_password = bcrypt.hashpw(get_password.encode('utf-8'),
                                             bcrypt.gensalt())
-            users.insert({'username': get_username,
-                          'password': hashed_password})
+            users.insert_one({'username': get_username.lower(),
+                              'password': hashed_password})
+            session['username'] = get_username
             return redirect(url_for('index'))
 
         flash('That username already exists!')
@@ -182,6 +189,11 @@ def title(title_id):
     if not id_exists:
         return render_template("404.html")
     else:
+        if 'username' in session:
+            username = session['username']
+            return render_template('title.html', title=title,
+                                   reviews=limited_reviews, username=username)
+
         return render_template('title.html', title=title,
                                reviews=limited_reviews)
 

@@ -56,6 +56,9 @@
     input {
       margin-bottom: 0.5rem;
       background-color: #fafafa;
+      &:first-of-type{
+          display: none;
+      }
     }
     textarea {
       margin-bottom: 0.5rem;
@@ -89,8 +92,16 @@
       margin-bottom: 0.5rem;
       a {
         color: $primary-color;
-        span:first-of-type {
-          font-weight: 500;
+        p{
+            display: inline-block;
+            margin: 0;
+            text-transform: lowercase;
+            &:first-of-type {
+                font-weight: 500;
+            }
+            &::first-letter{
+                text-transform: capitalize;
+            }
         }
         &:hover {
           color: lighten($primary-color, 50%);

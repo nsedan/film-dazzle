@@ -25,13 +25,19 @@
                         <a class="dropdown-item" href="/top_users">Top Users</a>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Log In</a>
-                </li>
+                {% if username %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My Profile</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Log In</a>
+                    </li>
+                {% endif %}
             </ul>
             <div class="row">
                 <div class="dropdown search-bar">
-                    <button class="btn btn-search" type="button" id="search" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-search" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-search"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="search">
