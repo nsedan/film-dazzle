@@ -67,5 +67,5 @@ function searchBarPosition(screenSize) {
 }
 
 $(document).on("click", ".btn-search", () => {
-  $(".form-control").focus();
+  $("#search").focus();
 });

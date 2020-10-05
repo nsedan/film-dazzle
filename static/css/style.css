@@ -38,6 +38,7 @@ a:hover {
 
 hr {
   margin: 0;
+  margin-bottom: 0.5rem;
   border-top: 3px solid #474747;
   width: 3rem;
 }
@@ -175,16 +176,13 @@ footer p {
 .title {
   padding: 1rem;
 }
-.title hr {
-  margin-bottom: 0.5rem;
-}
-.title .title-bg .title-name {
+.title .title-name {
   padding: 0;
 }
-.title .title-bg .title-name h3 {
+.title .title-name h3 {
   font-size: 1.5rem;
 }
-.title .title-bg .title-ratings {
+.title .title-ratings {
   font-size: 1.6rem;
   padding: 0;
   margin: auto;
@@ -192,108 +190,102 @@ footer p {
   width: 50%;
   text-align: center;
 }
-.title .title-bg .title-ratings img {
+.title .title-ratings img {
   width: 1.5rem;
   margin-top: -0.4rem;
   margin-right: 0.5rem;
 }
-.title .title-bg .title-poster {
+.title .title-poster {
   margin-top: 1rem;
 }
-.title .title-bg .title-poster img {
+.title .title-poster img {
   width: 30%;
   border-radius: 5%;
 }
-.title .title-bg .title-poster .title-trailer {
+.title .title-poster .title-trailer {
   margin-left: 2%;
   width: 68%;
   border-radius: 5%;
 }
-.title .title-bg .small-info {
+.title .small-info {
   padding-top: 0.25rem;
 }
-.title .title-info {
+.title .title-info p:first-child {
   margin-top: 1rem;
 }
-.title .title-info .reviews {
-  margin-bottom: 1.5rem;
+.title .title-info p:nth-child(5), .title .title-info p:nth-child(4) {
+  text-align: justify;
 }
-.title .title-info .reviews img {
-  width: 1.1rem;
-  margin-top: -0.2rem;
-  margin-left: 0.5rem;
-}
-.title .form-review {
-  margin-bottom: 0;
-  padding: 1rem 0 1rem 0;
-}
-.title .form-review input {
+
+.reviews-block .form-review input {
   margin-bottom: 0.5rem;
   background-color: #fafafa;
 }
-.title .form-review input:first-of-type {
+.reviews-block .form-review input:first-of-type {
   display: none;
 }
-.title .form-review textarea {
+.reviews-block .form-review textarea {
   margin-bottom: 0.5rem;
   resize: none;
   background-color: #fafafa;
 }
-.title .form-review .rating input {
+.reviews-block .form-review .rating input {
   display: inline;
   margin-left: 5rem;
   opacity: 0;
 }
-.title .form-review .rating img {
+.reviews-block .form-review .rating img {
   cursor: pointer;
   width: 2rem;
 }
-.title .form-review .rating img:hover {
+.reviews-block .form-review .rating img:hover {
   filter: none;
   transform: rotate(20deg);
 }
-.title .form-review .rating .filter {
+.reviews-block .form-review .rating .filter {
   filter: grayscale(80%);
 }
-.title .form-review button {
+.reviews-block .form-review button {
   margin-top: 0.5rem;
 }
-.title .reviews li {
+.reviews-block .reviews {
+  margin-bottom: 1.5rem;
+}
+.reviews-block .reviews li {
   margin-bottom: 0.5rem;
 }
-.title .reviews li a {
+.reviews-block .reviews li img {
+  width: 1.1rem;
+  margin-top: -0.2rem;
+  margin-left: 0.5rem;
+}
+.reviews-block .reviews li a {
   color: #141414;
 }
-.title .reviews li a p {
+.reviews-block .reviews li a p {
   display: inline-block;
   margin: 0;
   text-transform: lowercase;
 }
-.title .reviews li a p:first-of-type {
+.reviews-block .reviews li a p:first-of-type {
   font-weight: 500;
 }
-.title .reviews li a p::first-letter {
+.reviews-block .reviews li a p::first-letter {
   text-transform: capitalize;
 }
-.title .reviews li a:hover {
+.reviews-block .reviews li a:hover {
   color: #949494;
-}
-.title p:first-child {
-  margin-top: 1rem;
-}
-.title p:nth-child(6), .title p:nth-child(4) {
-  text-align: justify;
 }
 
 @media screen and (max-width: 770px) {
-  .title .title-bg {
-    padding-bottom: 0.5rem;
-  }
-  .title .title-bg .title-name h3 {
+  .title .title-name h3 {
     font-size: 1.25rem;
   }
   .title .title-info {
-    margin: 0;
+    margin-top: 0.5rem;
+  }
+  .title .title-info p {
+    margin-bottom: 0.5rem;
   }
   .title .col-12 {
     padding: 0;

@@ -102,18 +102,31 @@ def register():
 
     if request.method == 'POST':
         users = mongo.db.users
-        existing_user = mongo.db.users.find_one({'username': get_username})
+        user_exists = mongo.db.users.find_one({'username': get_username})
 
-        if not existing_user:
+        if not user_exists:
+            date = datetime.now().strftime("%B, %Y")
             hashed_password = bcrypt.hashpw(get_password.encode('utf-8'),
                                             bcrypt.gensalt())
-            users.insert_one({'username': get_username.lower(),
-                              'password': hashed_password})
+            users.insert_one({'username': get_username,
+                              'password': hashed_password,
+                              'user_id': str(uuid.uuid4()),
+                              'created_date': date,
+                              'pic': 'https://bit.ly/2SrcaUc'})
             session['username'] = get_username
             return redirect(url_for('index'))
 
         flash('That username already exists!')
     return render_template('register.html')
+
+
+@app.route("/profile")
+def profile():
+    if "username" in session:
+        username = session['username']
+        user_info = mongo.db.users.find_one({'username': username})
+        return render_template("profile.html", user_info=user_info)
+    return render_template('index.html')
 
 
 @app.route('/search', methods=["GET", "POST"])
@@ -249,38 +262,57 @@ def review(review_choice):
 
 @app.route('/top_imdb')
 def top_imdb():
-    titles = list(mongo.db.titles.find().limit(10))
+    titles = mongo.db.titles.find()
     sorted_titles = sorted(titles, key=lambda k: k['imdb_rating'],
                            reverse=True)
     sorted_titles_list = []
     for sorted_title in sorted_titles:
         if not sorted_title['imdb_rating'] == 'N/A':
             sorted_titles_list.append(sorted_title)
-    return render_template('top_imdb.html', titles=sorted_titles_list)
+    if 'username' in session:
+        username = session['username']
+        return render_template('top_imdb.html',
+                               titles=sorted_titles_list[0:10],
+                               username=username)
+
+    return render_template('top_imdb.html', titles=sorted_titles_list[0:10])
 
 
 @app.route('/top_metacritic')
 def top_metacritic():
-    titles = list(mongo.db.titles.find().limit(10))
+    titles = mongo.db.titles.find()
     sorted_titles = sorted(titles, key=lambda k: k['metascore'],
                            reverse=True)
     sorted_titles_list = []
     for sorted_title in sorted_titles:
         if not sorted_title['metascore'] == 'N/A':
             sorted_titles_list.append(sorted_title)
-    return render_template('top_metacritic.html', titles=sorted_titles_list)
+    if 'username' in session:
+        username = session['username']
+        return render_template('top_metacritic.html',
+                               titles=sorted_titles_list[0:10],
+                               username=username)
+
+    return render_template('top_metacritic.html',
+                           titles=sorted_titles_list[0:10])
 
 
 @app.route('/top_users')
 def top_users():
-    titles = list(mongo.db.titles.find().limit(10))
+    titles = mongo.db.titles.find()
     sorted_titles = sorted(titles, key=lambda k: k['users_rating'],
                            reverse=True)
     sorted_titles_list = []
     for sorted_title in sorted_titles:
         if not sorted_title['users_rating'] == 'N/A':
             sorted_titles_list.append(sorted_title)
-    return render_template('top_users.html', titles=sorted_titles_list)
+    if 'username' in session:
+        username = session['username']
+        return render_template('top_users.html',
+                               titles=sorted_titles_list[0:10],
+                               username=username)
+
+    return render_template('top_users.html', titles=sorted_titles_list[0:10])
 
 
 @app.route('/box_office')
@@ -289,6 +321,10 @@ def box_office():
     offset = request.args.get('offset', 0, type=int)
     page = 25
     boxoffice_limited = boxoffice.skip(offset).limit(page)
+    if 'username' in session:
+        username = session['username']
+        return render_template('box_office.html', boxoffice=boxoffice_limited,
+                               username=username)
 
     return render_template('box_office.html', boxoffice=boxoffice_limited)
 

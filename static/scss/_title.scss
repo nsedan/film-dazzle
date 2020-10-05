@@ -1,63 +1,59 @@
 .title {
   padding: 1rem;
-  hr {
-    margin-bottom: 0.5rem;
+  .title-name {
+    padding: 0;
+    h3 {
+      font-size: 1.5rem;
+    }
   }
-  .title-bg {
-    .title-name {
-      padding: 0;
-      h3 {
-        font-size: 1.5rem;
-      }
+  .title-ratings {
+    font-size: 1.6rem;
+    padding: 0;
+    margin: auto;
+    margin-top: 0.5rem;
+    width: 50%;
+    text-align: center;
+    img {
+      width: 1.5rem;
+      margin-top: -0.4rem;
+      margin-right: 0.5rem;
     }
-    .title-ratings {
-      font-size: 1.6rem;
-      padding: 0;
-      margin: auto;
-      margin-top: 0.5rem;
-      width: 50%;
-      text-align: center;
-      img {
-        width: 1.5rem;
-        margin-top: -0.4rem;
-        margin-right: 0.5rem;
-      }
+  }
+  .title-poster {
+    margin-top: 1rem;
+    img {
+      width: 30%;
+      border-radius: 5%;
     }
-    .title-poster {
-      margin-top: 1rem;
-      img {
-        width: 30%;
-        border-radius: 5%;
-      }
-      .title-trailer {
-        margin-left: 2%;
-        width: 68%;
-        border-radius: 5%;
-      }
+    .title-trailer {
+      margin-left: 2%;
+      width: 68%;
+      border-radius: 5%;
     }
-    .small-info {
-      padding-top: 0.25rem;
-    }
+  }
+  .small-info {
+    padding-top: 0.25rem;
   }
   .title-info {
-    margin-top: 1rem;
-    .reviews {
-      margin-bottom: 1.5rem;
-      img {
-        width: 1.1rem;
-        margin-top: -0.2rem;
-        margin-left: 0.5rem;
+    p {
+      &:first-child {
+        margin-top: 1rem;
+      }
+      &:nth-child(5),
+      &:nth-child(4) {
+        text-align: justify;
       }
     }
   }
+}
+
+.reviews-block {
   .form-review {
-    margin-bottom: 0;
-    padding: 1rem 0 1rem 0;
     input {
       margin-bottom: 0.5rem;
       background-color: #fafafa;
-      &:first-of-type{
-          display: none;
+      &:first-of-type {
+        display: none;
       }
     }
     textarea {
@@ -88,20 +84,26 @@
     }
   }
   .reviews {
+    margin-bottom: 1.5rem;
     li {
       margin-bottom: 0.5rem;
+      img {
+        width: 1.1rem;
+        margin-top: -0.2rem;
+        margin-left: 0.5rem;
+      }
       a {
         color: $primary-color;
-        p{
-            display: inline-block;
-            margin: 0;
-            text-transform: lowercase;
-            &:first-of-type {
-                font-weight: 500;
-            }
-            &::first-letter{
-                text-transform: capitalize;
-            }
+        p {
+          display: inline-block;
+          margin: 0;
+          text-transform: lowercase;
+          &:first-of-type {
+            font-weight: 500;
+          }
+          &::first-letter {
+            text-transform: capitalize;
+          }
         }
         &:hover {
           color: lighten($primary-color, 50%);
@@ -109,29 +111,20 @@
       }
     }
   }
-  p {
-    &:first-child {
-      margin-top: 1rem;
-    }
-    &:nth-child(6),
-    &:nth-child(4) {
-      text-align: justify;
-    }
-  }
 }
 
 @media screen and (max-width: 770px) {
   .title {
-    .title-bg {
-      padding-bottom: 0.5rem;
-      .title-name {
-        h3 {
-          font-size: 1.25rem;
-        }
+    .title-name {
+      h3 {
+        font-size: 1.25rem;
       }
     }
     .title-info {
-      margin: 0;
+      margin-top: 0.5rem;
+      p {
+        margin-bottom: 0.5rem;
+      }
     }
     .col-12 {
       padding: 0;

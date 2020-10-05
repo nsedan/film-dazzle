@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 {% block body %}
     <section class="text-center">
-        <form class="form-signin" method="POST" action="{{ url_for('login') }}">
+        <form class="form-signin shadow-lg p-3 mb-5 bg-white rounded" method="POST" action="{{ url_for('login') }}">
             <img class="mb-2" src="{{ url_for('static', filename='favicon/favicon.png') }}" alt="Film Dazzle."/>
             <h1 class="h3 mb-3">Log In</h1>
             <label for="username" class="sr-only">Username</label>

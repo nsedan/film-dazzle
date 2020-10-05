@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% block body %}
+    <section class="container">
+        <div class="row">
+            <img src="{{ user_info.pic }}" alt="user picture" width="100px">
+            <h1>{{ user_info.username }}</h1>
+        </div>
+        <p>Joined since:
+            <span>{{ user_info.created_date }}</span>
+        </p>
+    </section>
+{% endblock %}

@@ -1,127 +1,220 @@
-{% extends 'index.html' %}
-{% block body %}
-    <main class="title">
-        <div class="title-block">
-            <div class="row title-bg">
-                <div class="col-12 col-lg-7">
-                    <div class="row">
-                        <div class="col-7 title-name">
-                            <h3>{{ title.title }}</h3>
-                            <hr/>
-                        </div>
-                        <div class="col-5 title-ratings">
-                            <span><img src="{{ url_for('static', filename='favicon/favicon.png') }}" alt="TGMB."/>{{ title.users_rating }}</span>
-                            <span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/IMDb_Logo_Square.svg/1200px-IMDb_Logo_Square.svg.png" alt="imdb"/>{{ title.imdb_rating }}</span>
-                            <span><img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Metacritic_M.png" alt="metascore"/>{{ title.metascore }}</span>
-                        </div>
-                    </div>
-                    <div class="small-info">
-                        <span>{{ title.rated }}
-                            Rated |
-                        </span>
-                        <span>{{ title.runtime }}
-                            |
-                        </span>
-                        <span>{{ title.genre }}</span>
-                    </div>
-                    <div class="title-poster">
-                        <div class="row">
-                            <img src="{{ title.poster }}" alt=""/>
-                            <iframe class="title-trailer" src="https://www.youtube.com/embed/{{ title.youtube_id }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-5">
-                    {% if username %}
-                        <form class="form-group form-review" action="{{ url_for('user_review', title_id=title.imdb_id) }}" method="POST">
-                            <h5>Leave a review</h5>
-                            <hr/>
-                            <input type="text" class="form-control" id="user" name="user" autocomplete="off" value="{{ username }}" readonly/>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="Title" autocomplete="off" required/>
-                            <textarea class="form-control" id="text" name="text" rows="3" autocomplete="off" placeholder="Leave a review..."></textarea>
-                            <div class="rating">
-                                <input class="form-check-input" type="radio" name="rating" id="rating1" value="1" required/>
-                                <label class="form-check-label" for="rating1"><img class="gem1 filter" src="{{ url_for('static', filename='favicon/favicon.png') }}"/></label>
-                                <input class="form-check-input" type="radio" name="rating" id="rating2" value="2" required/>
-                                <label class="form-check-label" for="rating2"><img class="gem2 filter" src="{{ url_for('static', filename='favicon/favicon.png') }}"/></label>
-                                <input class="form-check-input" type="radio" name="rating" id="rating3" value="3" required/>
-                                <label class="form-check-label" for="rating3"><img class="gem3 filter" src="{{ url_for('static', filename='favicon/favicon.png') }}"/></label>
-                                <input class="form-check-input" type="radio" name="rating" id="rating4" value="4" required/>
-                                <label class="form-check-label" for="rating4"><img class="gem4 filter" src="{{ url_for('static', filename='favicon/favicon.png') }}"/></label>
-                                <input class="form-check-input" type="radio" name="rating" id="rating5" value="5" required/>
-                                <label class="form-check-label" for="rating5"><img class="gem5 filter" src="{{ url_for('static', filename='favicon/favicon.png') }}"/></label>
-                            </div>
-
-                            <button class="btn btn-secondary" type="submit">
-                                Send!
-                            </button>
-                        </form>
-                    {% else %}
-                        <h5 class="mt-2">Leave a review</h5>
-                        <hr/>
-                        <p>To leave a review you must be logged in first.</p>
-                        <a href="/login" class="btn btn-secondary mb-2" role="button">Log In</a>
-                    {% endif %}
-                </div>
-            </div>
+{% extends 'index.html' %} {% block body %}
+<main class="title">
+  <div class="title-block">
+    <div class="row">
+      <div class="col-12 col-lg-7">
+        <div class="row">
+          <div class="title-name">
+            <h3>{{ title.title }}</h3>
+            <hr />
+          </div>
+          <div class="col-5 title-ratings">
+            <span
+              ><img
+                src="{{ url_for('static', filename='favicon/favicon.png') }}"
+                alt="TGMB."
+              />{{ title.users_rating }}</span
+            >
+            <span
+              ><img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/IMDb_Logo_Square.svg/1200px-IMDb_Logo_Square.svg.png"
+                alt="imdb"
+              />{{ title.imdb_rating }}</span
+            >
+            <span
+              ><img
+                src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Metacritic_M.png"
+                alt="metascore"
+              />{{ title.metascore }}</span
+            >
+          </div>
         </div>
-        <div class="title-info">
-            <div class="row">
-                <div class="col-12 col-lg-7">
-                    <h5>Movie Info</h5>
-                    <hr/>
-                    <p>
-                        <strong>Directors:
-                        </strong>
-                        {{ title.director }}</p>
-                    <p>
-                        <strong>Writers:
-                        </strong>
-                        {{ title.writer }}</p>
-                    <p>
-                        <strong>Actors:
-                        </strong>
-                        {{ title.actors }}</p>
-                    <p>
-                        <strong>Plot:
-                        </strong>
-                        {{ title.plot }}</p>
-                    <p>
-                        <strong>Studio:
-                        </strong>
-                        {{ title.production }}</p>
-                    <p>
-                        <strong>Release:
-                        </strong>
-                        {{ title.released }}</p>
-                </div>
-                {% if not reviews %}
-                    <div class="reviews col-12 col-lg-5">
-                        <h5>Latest Reviews</h5>
-                        <hr/>
-                        <p>There are no reviews to show yet.</p>
-                    </div>
-                {% else %}
-                    <div class="reviews col-12 col-lg-5">
-                        <h5>Latest Reviews</h5>
-                        <hr/>
-                        {% for review in reviews %}
-                            <ul class="list-group">
-                                <li>
-                                    <a href="{{ url_for('review', review_choice=review.review_id) }}">
-                                        <p>{{ review.title }}
-                                            -
-                                        </p>
-                                        <p>{{ review.user }}</p>
-                                        <p><img src="{{ url_for('static', filename='favicon/favicon.png') }}" alt="TGMB."/>{{ review.rating }}<small>/5</small>
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            </div>
+        <div class="small-info">
+          <span>{{ title.rated }} Rated | </span>
+          <span>{{ title.runtime }} | </span>
+          <span>{{ title.genre }}</span>
         </div>
-    </main>
+        <div class="title-poster">
+          <div class="row">
+            <img src="{{ title.poster }}" alt="" />
+            <iframe
+              class="title-trailer"
+              src="https://www.youtube.com/embed/{{ title.youtube_id }}"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-5 title-info">
+        <h5>Movie Info</h5>
+        <hr />
+        <p>
+          <strong>Directors: </strong>
+          {{ title.director }}
+        </p>
+        <p>
+          <strong>Actors: </strong>
+          {{ title.actors }}
+        </p>
+        <p>
+          <strong>Plot: </strong>
+          {{ title.plot }}
+        </p>
+        <p>
+          <strong>Studio: </strong>
+          {{ title.production }}
+        </p>
+        <p>
+          <strong>Release: </strong>
+          {{ title.released }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="reviews-block mt-2 mt-md-3">
+    <div class="row">
+      <div class="col-12 col-lg-7">
+        {% if username %}
+        <form
+          class="form-group form-review"
+          action="{{ url_for('user_review', title_id=title.imdb_id) }}"
+          method="POST"
+        >
+          <h5>Leave a review</h5>
+          <hr />
+          <input
+            type="text"
+            class="form-control"
+            id="user"
+            name="user"
+            autocomplete="off"
+            value="{{ username }}"
+            readonly
+          />
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            name="title"
+            placeholder="Title"
+            autocomplete="off"
+            required
+          />
+          <textarea
+            class="form-control"
+            id="text"
+            name="text"
+            rows="3"
+            autocomplete="off"
+            placeholder="Leave a review..."
+          ></textarea>
+          <div class="rating">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="rating"
+              id="rating1"
+              value="1"
+              required
+            />
+            <label class="form-check-label" for="rating1"
+              ><img
+                class="gem1 filter"
+                src="{{ url_for('static', filename='favicon/favicon.png') }}"
+            /></label>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="rating"
+              id="rating2"
+              value="2"
+              required
+            />
+            <label class="form-check-label" for="rating2"
+              ><img
+                class="gem2 filter"
+                src="{{ url_for('static', filename='favicon/favicon.png') }}"
+            /></label>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="rating"
+              id="rating3"
+              value="3"
+              required
+            />
+            <label class="form-check-label" for="rating3"
+              ><img
+                class="gem3 filter"
+                src="{{ url_for('static', filename='favicon/favicon.png') }}"
+            /></label>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="rating"
+              id="rating4"
+              value="4"
+              required
+            />
+            <label class="form-check-label" for="rating4"
+              ><img
+                class="gem4 filter"
+                src="{{ url_for('static', filename='favicon/favicon.png') }}"
+            /></label>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="rating"
+              id="rating5"
+              value="5"
+              required
+            />
+            <label class="form-check-label" for="rating5"
+              ><img
+                class="gem5 filter"
+                src="{{ url_for('static', filename='favicon/favicon.png') }}"
+            /></label>
+          </div>
+          <button class="btn btn-secondary" type="submit">Send!</button>
+        </form>
+        {% else %}
+        <h5 class="mt-2">Leave a review</h5>
+        <hr />
+        <p>To leave a review you must be logged in first.</p>
+        <a href="/login" class="btn btn-secondary mb-2" role="button">Log In</a>
+        {% endif %}
+      </div>
+      {% if not reviews %}
+      <div class="reviews col-12 col-lg-5">
+        <h5>Latest Reviews</h5>
+        <hr />
+        <p>There are no reviews to show yet.</p>
+      </div>
+      {% else %}
+      <div class="reviews col-12 col-lg-5">
+        <h5>Latest Reviews</h5>
+        <hr />
+        {% for review in reviews %}
+        <ul class="list-group">
+          <li>
+            <a href="{{ url_for('review', review_choice=review.review_id) }}">
+              <p>{{ review.title }} -</p>
+              <p>{{ review.user }}</p>
+              <p>
+                <img
+                  src="{{ url_for('static', filename='favicon/favicon.png') }}"
+                  alt="Film Dazzle."
+                />{{ review.rating }}<small>/5</small>
+              </p>
+            </a>
+          </li>
+        </ul>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</main>
 {% endblock %}
