@@ -197,7 +197,6 @@ def title(title_id):
     imdb_id = title['imdb_id']
     reviews = list(mongo.db.reviews.find({'imdb_id': imdb_id}))
     sorted_reviews = sorted(reviews, key=lambda k: k['_id'], reverse=True)
-    limited_reviews = sorted_reviews[0:10]
 
     if not id_exists:
         return render_template("404.html")
@@ -205,10 +204,11 @@ def title(title_id):
         if 'username' in session:
             username = session['username']
             return render_template('title.html', title=title,
-                                   reviews=limited_reviews, username=username)
+                                   reviews=sorted_reviews[0:10],
+                                   username=username)
 
         return render_template('title.html', title=title,
-                               reviews=limited_reviews)
+                               reviews=sorted_reviews[0:10])
 
 
 @app.route('/user_review/<title_id>', methods=["GET", "POST"])
@@ -256,6 +256,11 @@ def review(review_choice):
     review_id = review['review_id']
     imdb_id = review['imdb_id']
     title = mongo.db.titles.find_one({'imdb_id': imdb_id})
+    if 'username' in session:
+        username = session['username']
+        return render_template('review.html', review_id=review_id,
+                               review=review, title=title, username=username)
+
     return render_template('review.html', review_id=review_id,
                            review=review, title=title)
 

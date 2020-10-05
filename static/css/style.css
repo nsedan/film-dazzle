@@ -316,14 +316,31 @@ footer p {
   margin-top: -0.2rem;
   margin-right: 0.25rem;
 }
-.review-block .col-12 .review-title {
-  margin-top: 1rem;
+
+.review-title {
   font-size: 1.5rem;
 }
-.review-block .col-12 .review-title .small-point {
-  font-size: 0.75rem;
+.review-title .small-point {
+  font-size: 1rem;
 }
-.review-block .col-12 .review-text {
+.review-title p {
+  display: inline-block;
+  margin: 0;
+  text-transform: lowercase;
+}
+.review-title p:first-of-type {
+  font-weight: 500;
+}
+.review-title p::first-letter {
+  text-transform: capitalize;
+}
+.review-title img {
+  width: 1.1rem;
+  margin-top: -0.2rem;
+  margin-right: 0.25rem;
+}
+
+.review-text {
   margin-top: 1rem;
 }
 

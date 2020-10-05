@@ -1,44 +1,67 @@
-{% extends 'index.html' %} {% block body %}
-<main class="container">
-	<div class="review-block">
-		<div class="row">
-			<div class="col-12">
-				<div class="ratings">
-					<h4>{{title.title}}</h4>
-					<span
-                        ><img
-                            src="{{ url_for('static', filename='favicon/favicon.png') }}"
-                            alt="TGMB."
-                        />{{title.users_rating}}</span>
-					<span>
-                        <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/IMDb_Logo_Square.svg/1200px-IMDb_Logo_Square.svg.png"
-                            alt="imdb"
-                        />{{title.imdb_rating}}
-                    </span>
-					<span>
-                        <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Metacritic_M.png"
-                            alt="metascore"
-                        />{{title.metascore}}
-                    </span>
-				</div>
-				<hr />
-				<h4 class="review-title">
-					{{review.title}}
-					<small>- by {{review.user}}</small>
-					<small>
-                        <img
-                            src="{{ url_for('static', filename='favicon/favicon.png') }}"
-                            alt="TGMB."
-                        />{{review.rating}}<span class="small-point">/5</span>
-					</small>
-				</h4>
-				<p>Posted on {{review.date}}</p>
-				<hr />
-				<p class="review-text">{{review.text}}</p>
-			</div>
-		</div>
-	</div>
-</main>
+{% extends 'index.html' %}
+{% block body %}
+    <main class="container">
+        <div class="review-block">
+            <div class="row">
+                <div class="col-12">
+                    <div class="ratings">
+                        <h2>{{ title.title }}</h2>
+                        <span><img src="{{ url_for('static', filename='favicon/favicon.png') }}" alt="film dazzle."/>{{ title.users_rating }}</span>
+                        <span>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/IMDb_Logo_Square.svg/1200px-IMDb_Logo_Square.svg.png" alt="imdb"/>{{ title.imdb_rating }}
+                        </span>
+                        <span>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Metacritic_M.png" alt="metascore"/>{{ title.metascore }}
+                        </span>
+                    </div>
+                    <hr/>
+                    {% if username %}
+                        {% if username == review.user %}
+                            <div class="row">
+                                <div class="review-title">
+                                    <p>{{ review.title }}</p>
+                                    <span>- by
+                                        <p>{{ review.user }}</p>
+                                    </span>
+                                    <p>
+                                        <img src="{{ url_for('static', filename='favicon/favicon.png') }}" alt="film dazzle."/>{{ review.rating }}<p class="small-point">/5</p>
+                                    </p>
+                                    <div class="row">
+                                        <small class="small-point">Posted on
+                                            {{ review.date }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div>
+                                <p class="review-text">{{ review.text }}</p>
+                            </div>
+                            <a class="btn btn-sm btn-secondary" href="#" role="button">Edit</a>
+                            <a class="btn btn-sm btn-secondary" href="#" role="button">Delete</a>
+                        {% endif %}
+                    {% else %}
+                        <div class="row">
+                            <div class="review-title">
+                                <p>{{ review.title }}</p>
+                                <span>- by
+                                    <p>{{ review.user }}</p>
+                                </span>
+                                <p>
+                                    <img src="{{ url_for('static', filename='favicon/favicon.png') }}" alt="film dazzle."/>{{ review.rating }}<p class="small-point">/5</p>
+                                </p>
+                                <div class="row">
+                                    <small class="small-point">Posted on
+                                        {{ review.date }}</small>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div>
+                            <p class="review-text">{{ review.text }}</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}
