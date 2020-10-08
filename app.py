@@ -55,7 +55,7 @@ def index():
         titles = mongo.db.titles.find_one({'imdb_id': ids})
         titles_list.append(titles)
 
-    # Top Box Office
+    """Top 10 box office success titles"""
     boxoffice = mongo.db.boxoffice.find().limit(10)
     titles = mongo.db.titles.find()
     boxoffice_limited = []
@@ -203,12 +203,15 @@ def title(title_id):
     else:
         if 'username' in session:
             username = session['username']
+            user_review = list(mongo.db.reviews.find({'user': username,
+                                                      'imdb_id': title_id}))
             return render_template('title.html', title=title,
-                                   reviews=sorted_reviews[0:10],
-                                   username=username)
+                                   reviews=sorted_reviews,
+                                   username=username,
+                                   user_review=user_review)
 
         return render_template('title.html', title=title,
-                               reviews=sorted_reviews[0:10])
+                               reviews=sorted_reviews)
 
 
 @app.route('/user_review/<title_id>', methods=["GET", "POST"])

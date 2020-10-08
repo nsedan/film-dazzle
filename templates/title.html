@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12 col-lg-7">
                     <div class="row">
-                        <div class="title-name">
+                        <div class="col-7 title-name">
                             <h3>{{ title.title }}</h3>
                             <hr/>
                         </div>
@@ -66,26 +66,14 @@
             <div class="row">
                 <div class="col-12 col-lg-7">
                     {% if username %}
-                        <form class="form-group form-review" action="{{ url_for('user_review', title_id=title.imdb_id) }}" method="POST">
-                            <h5>Leave a review</h5>
+                        {% if not user_review == [] %}
+                            <h5 class="mt-2">Thank you!</h5>
                             <hr/>
-                            <input type="text" class="form-control" id="user" name="user" autocomplete="off" value="{{ username }}" readonly/>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="Title" autocomplete="off" required/>
-                            <textarea class="form-control" id="text" name="text" rows="3" autocomplete="off" placeholder="Leave a review..."></textarea>
-                            <div class="rating">
-                                <input class="form-check-input" type="radio" name="rating" id="rating1" value="1" required/>
-                                <label class="form-check-label" for="rating1"><img class="gem1 filter" src="{{ url_for('static', filename='favicon/favicon.png') }}"/></label>
-                                <input class="form-check-input" type="radio" name="rating" id="rating2" value="2" required/>
-                                <label class="form-check-label" for="rating2"><img class="gem2 filter" src="{{ url_for('static', filename='favicon/favicon.png') }}"/></label>
-                                <input class="form-check-input" type="radio" name="rating" id="rating3" value="3" required/>
-                                <label class="form-check-label" for="rating3"><img class="gem3 filter" src="{{ url_for('static', filename='favicon/favicon.png') }}"/></label>
-                                <input class="form-check-input" type="radio" name="rating" id="rating4" value="4" required/>
-                                <label class="form-check-label" for="rating4"><img class="gem4 filter" src="{{ url_for('static', filename='favicon/favicon.png') }}"/></label>
-                                <input class="form-check-input" type="radio" name="rating" id="rating5" value="5" required/>
-                                <label class="form-check-label" for="rating5"><img class="gem5 filter" src="{{ url_for('static', filename='favicon/favicon.png') }}"/></label>
-                            </div>
-                            <button class="btn btn-secondary" type="submit">Send!</button>
-                        </form>
+                            <p>If you want to edit your review go to your profile.</p>
+                            <a href="/profile" class="btn btn-secondary mb-2" role="button">My Profile</a>
+                        {% else %}
+                            {% include 'includes/_reviewform.html' %}
+                        {% endif %}
                     {% else %}
                         <h5 class="mt-2">Leave a review</h5>
                         <hr/>
@@ -103,19 +91,23 @@
                     <div class="reviews col-12 col-lg-5">
                         <h5>Latest Reviews</h5>
                         <hr/>
+                        {% set count = namespace(value=0) %}
                         {% for review in reviews %}
-                            <ul class="list-group">
-                                <li>
-                                    <a href="{{ url_for('review', review_choice=review.review_id) }}">
-                                        <p>{{ review.title }}
-                                            -</p>
-                                        <p>{{ review.user }}</p>
-                                        <p>
-                                            <img src="{{ url_for('static', filename='favicon/favicon.png') }}" alt="Film Dazzle."/>{{ review.rating }}<small>/5</small>
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
+                            {% if count.value < 5 %}
+                                {% set count.value = count.value + 1 %}
+                                <ul class="list-group">
+                                    <li>
+                                        <a href="{{ url_for('review', review_choice=review.review_id) }}">
+                                            <p>{{ review.title }}
+                                                -</p>
+                                            <p>{{ review.user }}</p>
+                                            <p>
+                                                <img src="{{ url_for('static', filename='favicon/favicon.png') }}" alt="Film Dazzle."/>{{ review.rating }}<small>/5</small>
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 {% endif %}
