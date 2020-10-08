@@ -67,7 +67,7 @@
                 <div class="col-12 col-lg-7">
                     {% if username %}
                         {% if not user_review == [] %}
-                            <h5 class="mt-2">Thank you!</h5>
+                            <h5>Thank you!</h5>
                             <hr/>
                             <p>If you want to edit your review go to your profile.</p>
                             <a href="/profile" class="btn btn-secondary mb-2" role="button">My Profile</a>
@@ -75,20 +75,20 @@
                             {% include 'includes/_reviewform.html' %}
                         {% endif %}
                     {% else %}
-                        <h5 class="mt-2">Leave a review</h5>
+                        <h5>Leave a review</h5>
                         <hr/>
                         <p>To leave a review you must be logged in first.</p>
                         <a href="/login" class="btn btn-secondary mb-2" role="button">Log In</a>
                     {% endif %}
                 </div>
-                {% if not reviews %}
-                    <div class="reviews col-12 col-lg-5">
+                <div class="reviews col-12 col-lg-5">
+                    {% if not reviews %}
                         <h5>Latest Reviews</h5>
                         <hr/>
                         <p>There are no reviews to show yet.</p>
                     </div>
-                {% else %}
                     <div class="reviews col-12 col-lg-5">
+                    {% else %}
                         <h5>Latest Reviews</h5>
                         <hr/>
                         {% set count = namespace(value=0) %}
@@ -109,8 +109,8 @@
                                 </ul>
                             {% endif %}
                         {% endfor %}
-                    </div>
-                {% endif %}
+                    {% endif %}
+                </div>
             </div>
         </div>
     </main>

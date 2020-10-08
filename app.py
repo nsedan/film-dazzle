@@ -111,8 +111,7 @@ def register():
             users.insert_one({'username': get_username,
                               'password': hashed_password,
                               'user_id': str(uuid.uuid4()),
-                              'created_date': date,
-                              'pic': 'https://bit.ly/2SrcaUc'})
+                              'created_date': date})
             session['username'] = get_username
             return redirect(url_for('index'))
 
@@ -125,7 +124,9 @@ def profile():
     if "username" in session:
         username = session['username']
         user_info = mongo.db.users.find_one({'username': username})
-        return render_template("profile.html", user_info=user_info)
+        user_reviews = mongo.db.reviews.find({'user': username})
+        return render_template("profile.html", user_info=user_info,
+                               user_reviews=user_reviews)
     return render_template('index.html')
 
 
@@ -354,6 +355,9 @@ def randomize():
 
 @app.errorhandler(404)
 def not_found(e):
+    if 'username' in session:
+        username = session['username']
+        return render_template("404.html", username=username)
     return render_template("404.html")
 
 

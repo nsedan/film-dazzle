@@ -1,12 +1,35 @@
-{% extends 'index.html' %}
-{% block body %}
-    <section class="container">
-        <div class="row">
-            <img src="{{ user_info.pic }}" alt="user picture" width="100px">
-            <h1>{{ user_info.username }}</h1>
-        </div>
-        <p>Member since:
-            <span>{{ user_info.created_date }}</span>
-        </p>
-    </section>
+{% extends 'index.html' %} {% block body %}
+<section class="container profile pb-4">
+  <div class="row">
+    <div class="col-12 col-lg-8">
+      <h1 class="m-0"><i class="fas fa-user"></i> Welcome <p class="d-inline text-capitalize">{{ user_info.username }}</p>!</h1>
+    </div>
+    <div class="col-12 col-lg-4 d-flex align-items-center">
+      <h5 class="m-0">
+        Member since:
+        <span>{{ user_info.created_date }}</span>
+      </h5>
+    </div>
+  </div>
+  <div class="col-12 mt-3">
+    <h4>Reviews</h4>
+    <hr />
+  </div>
+  {% for review in user_reviews %}
+  <div class="col-12 mt-3">
+    <ul>
+      <li>
+        <h5 class="text-capitalize">
+          {{ review.title }} -
+          <span class="font-weight-normal">{{review.date}}</span>
+        </h5>
+        <a href="{{ url_for('review', review_choice=review.review_id) }}"
+          >Read more...</a
+        >
+      </li>
+    </ul>
+  </div>
+  {% endfor %}
+</section>
 {% endblock %}
+
