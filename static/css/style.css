@@ -300,6 +300,13 @@ footer p {
 .review-block {
   padding: 0 0 1rem 0;
 }
+.review-block .col-12 .title-link {
+  color: #141414;
+}
+.review-block .col-12 .title-link:hover {
+  text-decoration: none;
+  color: #949494;
+}
 .review-block .col-12 img {
   width: 1.5rem;
   margin-top: -0.2rem;

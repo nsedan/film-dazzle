@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="ratings">
-                        <h2>{{ title.title }}</h2>
+                        <h2><a class="title-link" href="{{ url_for('title', title_id=title.imdb_id) }}">{{ title.title }}</a></h2>
                         <span><img src="{{ url_for('static', filename='favicon/favicon.png') }}" alt="film dazzle."/>{{ title.users_rating }}</span>
                         <span>
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/IMDb_Logo_Square.svg/1200px-IMDb_Logo_Square.svg.png" alt="imdb"/>{{ title.imdb_rating }}
@@ -37,7 +37,7 @@
                                 <p class="review-text">{{ review.text }}</p>
                             </div>
                             <a class="btn btn-sm btn-secondary" href="#" role="button">Edit</a>
-                            <a class="btn btn-sm btn-secondary" href="#" role="button">Delete</a>
+                            <a class="btn btn-sm btn-secondary" href="{{ url_for('delete_review', review_id=review_id, title_id=title.imdb_id ) }}" role="button">Delete</a>
                         {% else %}
                             <div class="row">
                                 <div class="review-title">

@@ -269,6 +269,24 @@ def review(review_choice):
                            review=review, title=title)
 
 
+@app.route('/delete_review/<review_id>/<title_id>')
+def delete_review(review_id, title_id):
+    review = mongo.db.reviews.delete_one({'review_id': review_id})
+
+    # Update rating and push to Mongo
+    reviews = list(mongo.db.reviews.find({'imdb_id': title_id}))
+    reviews_length = len(reviews)
+    reviews_sum = 0
+    for review in reviews:
+        review_int = int(review['rating'])
+        reviews_sum = reviews_sum + review_int
+    avg = round(reviews_sum / reviews_length, 1)
+    mongo.db.titles.update_one({'imdb_id': title_id},
+                               {'$set': {'users_rating': str(avg)}})
+
+    return redirect(url_for('title', title_id=title_id))
+
+
 @app.route('/top_imdb')
 def top_imdb():
     titles = mongo.db.titles.find()
