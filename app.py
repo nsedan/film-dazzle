@@ -200,7 +200,7 @@ def title(title_id):
     sorted_reviews = sorted(reviews, key=lambda k: k['_id'], reverse=True)
 
     if not id_exists:
-        return render_template("404.html")
+        return redirect(url_for("404"))
     else:
         if 'username' in session:
             username = session['username']
@@ -220,6 +220,7 @@ def user_review(title_id):
     if request.method == "POST":
         title = mongo.db.titles.find_one({'imdb_id': title_id})
         imdb_id = title['imdb_id']
+        movie_title = title['title']
 
         # Push to Mongo
         user_review = request.form.get('text')
@@ -232,6 +233,7 @@ def user_review(title_id):
                   'text': user_review,
                   'rating': user_rating,
                   'imdb_id': imdb_id,
+                  'movie_title': movie_title,
                   'review_id': str(uuid.uuid4()),
                   'date': date}
         mongo.db.reviews.insert_one(review)
@@ -280,7 +282,10 @@ def delete_review(review_id, title_id):
     for review in reviews:
         review_int = int(review['rating'])
         reviews_sum = reviews_sum + review_int
-    avg = round(reviews_sum / reviews_length, 1)
+    if reviews_sum == 0:
+        avg = 'N/A'
+    else:
+        avg = round(reviews_sum / reviews_length, 1)
     mongo.db.titles.update_one({'imdb_id': title_id},
                                {'$set': {'users_rating': str(avg)}})
 
