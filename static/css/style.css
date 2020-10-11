@@ -217,37 +217,6 @@ footer p {
   text-align: justify;
 }
 
-.reviews-block .form-review input {
-  margin-bottom: 0.5rem;
-  background-color: #fafafa;
-}
-.reviews-block .form-review input:first-of-type {
-  display: none;
-}
-.reviews-block .form-review textarea {
-  margin-bottom: 0.5rem;
-  resize: none;
-  background-color: #fafafa;
-}
-.reviews-block .form-review .rating input {
-  display: inline;
-  margin-left: 5rem;
-  opacity: 0;
-}
-.reviews-block .form-review .rating img {
-  cursor: pointer;
-  width: 2rem;
-}
-.reviews-block .form-review .rating img:hover {
-  filter: none;
-  transform: rotate(20deg);
-}
-.reviews-block .form-review .rating .filter {
-  filter: grayscale(80%);
-}
-.reviews-block .form-review button {
-  margin-top: 0.5rem;
-}
 .reviews-block .reviews {
   margin-bottom: 1.5rem;
 }
@@ -520,6 +489,38 @@ footer p {
 }
 .profile h6 img {
   width: 1.5rem;
+}
+
+.form-review input {
+  margin-bottom: 0.5rem;
+  background-color: #fafafa;
+}
+.form-review input:first-of-type {
+  display: none;
+}
+.form-review textarea {
+  margin-bottom: 0.5rem;
+  resize: none;
+  background-color: #fafafa;
+}
+.form-review .rating input {
+  display: inline;
+  margin-left: 5rem;
+  opacity: 0;
+}
+.form-review .rating img {
+  cursor: pointer;
+  width: 2rem;
+}
+.form-review .rating img:hover {
+  filter: none;
+  transform: rotate(20deg);
+}
+.form-review .rating .filter {
+  filter: grayscale(80%);
+}
+.form-review button {
+  margin-top: 0.5rem;
 }
 
 .error-404 {
