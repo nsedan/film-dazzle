@@ -218,7 +218,7 @@ footer p {
 }
 
 .reviews-block .reviews {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
 }
 .reviews-block .reviews li {
   margin-bottom: 0.5rem;
@@ -267,7 +267,7 @@ footer p {
   }
 }
 .review-block {
-  padding: 0 0 1rem 0;
+  padding-bottom: 1rem;
 }
 .review-block .col-12 .title-link {
   color: #141414;

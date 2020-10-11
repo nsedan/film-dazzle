@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 {% block body %}
 <div class="container">
-   <form class="form-group form-review" action="" method="POST">
+   <form class="form-group form-review" action="{{ url_for('update', review_id=review.review_id, title_id=review.imdb_id) }}" method="POST">
         <h5>Edit your review</h5>
         <hr/>
         <input type="text" class="form-control" id="user" name="user" value="{{ username }}" readonly/>

@@ -299,10 +299,21 @@ def edit(review_id):
     return render_template('review_edit.html', review=review)
 
 
-@app.route('/title/<title_id>/<review_id>')
+@app.route('/title/<title_id>/<review_id>', methods=["GET", "POST"])
 def update(review_id, title_id):
+    '''Updates users reviews and title ratings'''
+    user_review = request.form.get('text')
+    user_rating = request.form.get('rating')
+    user_title = request.form.get('title')
+    date = datetime.now().strftime("%B %d, %Y at %H:%M:%S")
+    review = mongo.db.reviews
+    review.update_one({'review_id': review_id},
+                      {'$set': {'title': user_title,
+                                'text': user_review,
+                                'rating': user_rating,
+                                'date': date}})
 
-    # Ratings to Mongo
+    # Update rating and push to Mongo
     reviews = list(mongo.db.reviews.find({'imdb_id': title_id}))
     reviews_length = len(reviews)
     reviews_sum = 0
