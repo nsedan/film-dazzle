@@ -6,6 +6,9 @@
     li {
       max-width: 18rem;
       padding: 1.5rem 1rem 1rem 1rem;
+      &:last-of-type {
+        margin-bottom: 3rem;
+      }
       .poster {
         width: 100%;
         height: 100%;

@@ -15,7 +15,7 @@
             <tbody>
                 {% for title_gross in boxoffice %}
                 <tr>
-                    <th class="text-center" scope="row">{{title_gross.rank}}</th>
+                    <th class="text-center rank" scope="row">{{title_gross.rank}}</th>
                     <td><a href="{{url_for('add_title', users_choice=title_gross.imdb_id)}}">{{title_gross.title}}</a></td>
                     <td>{{title_gross.worldwide_gross}}</td>
                     <td class="text-center boxoffice-year">{{title_gross.year}}</td>
@@ -26,10 +26,10 @@
     </div>
 	<nav>
 		<ul class="pagination justify-content-center">
-			<li class="p-2"><a class="btn btn-secondary" href="?page=1&offset=0">1</a></li>
-			<li class="p-2"><a class="btn btn-secondary" href="?page=2&offset=25">2</a></li>
-			<li class="p-2"><a class="btn btn-secondary" href="?page=3&offset=50">3</a></li>
-            <li class="p-2"><a class="btn btn-secondary" href="?page=4&offset=75">4</a></li>
+			<li><a class="btn btn-secondary rounded-0 pag-btn" id="pag1" href="?page=1&offset=0">1</a></li>
+			<li><a class="btn btn-secondary rounded-0 pag-btn" id="pag2" href="?page=2&offset=25">2</a></li>
+			<li><a class="btn btn-secondary rounded-0 pag-btn" id="pag3" href="?page=3&offset=50">3</a></li>
+            <li><a class="btn btn-secondary rounded-0 pag-btn" id="pag4" href="?page=4&offset=75">4</a></li>
 		</ul>
 	</nav>
 </section>
