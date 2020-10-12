@@ -10,7 +10,7 @@
 
 - The home page has a coming soon feature for movies, recently reviewed titles and a top 10 box office.
 - Search movies by title, achieved with the OMDB API, later the titles are stored in MongoDB.
-- Leave a review with a rating system.
+- Leave a review with a rating system, with full CRUD functionality.
 - Randomize feature, allow the user to find a random title from the DB.
 - A worldwide box office success ranking.
 - A top 10 ranking by rating, according IMDb, Metacritic and Film Dazzle.

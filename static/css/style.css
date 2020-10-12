@@ -323,7 +323,6 @@ footer p {
 .top-ratings {
   padding-top: 1.5rem;
   padding-left: 2rem;
-  display: inline-flex;
 }
 .top-ratings ul {
   padding: 0;

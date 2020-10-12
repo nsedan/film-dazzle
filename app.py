@@ -131,6 +131,12 @@ def profile():
     return render_template('index.html')
 
 
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('index'))
+
+
 @app.route('/search', methods=["GET", "POST"])
 def search():
     if request.method == "POST":
@@ -223,7 +229,7 @@ def create(title_id):
         imdb_id = title['imdb_id']
         movie_title = title['title']
 
-        # Push to Mongo
+        # Push user review to Mongo
         user_review = request.form.get('text')
         user_name = request.form.get('user')
         user_rating = request.form.get('rating')
