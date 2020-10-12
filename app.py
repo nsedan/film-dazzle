@@ -8,7 +8,7 @@ import bcrypt
 import uuid
 
 from flask import Flask, render_template, redirect, request, url_for, session, flash
-from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo, pymongo
 
 if os.path.exists("env.py"):
     import env
@@ -34,7 +34,7 @@ mongo = PyMongo(app)
 def index():
     """Popular titles based on latest reviews"""
     reviews = mongo.db.reviews.find()
-    sorted_reviews = sorted(reviews, key=lambda k: k['_id'], reverse=True)
+    sorted_reviews = reviews.sort('_id', pymongo.DESCENDING)
 
     # Avoid duplicates
     duplicates_list = []
@@ -124,9 +124,9 @@ def profile():
     if "username" in session:
         username = session['username']
         user_info = mongo.db.users.find_one({'username': username})
-        user_reviews = mongo.db.reviews.find({'user': username})
-        sorted_reviews = sorted(user_reviews, key=lambda k: k['_id'],
-                                reverse=True)
+        reviews = mongo.db.reviews
+        user_reviews = reviews.find({'user': username})
+        sorted_reviews = user_reviews.sort('_id', pymongo.DESCENDING)
 
         return render_template("profile.html", username=username,
                                user_info=user_info,
@@ -207,7 +207,7 @@ def title(title_id):
     # Load Reviews
     imdb_id = title['imdb_id']
     reviews = mongo.db.reviews.find({'imdb_id': imdb_id})
-    sorted_reviews = sorted(reviews, key=lambda k: k['_id'], reverse=True)
+    sorted_reviews = reviews.sort('_id', pymongo.DESCENDING)
 
     if not id_exists:
         return redirect(url_for("404"))
@@ -339,8 +339,7 @@ def update(review_id, title_id):
 @app.route('/top_imdb')
 def top_imdb():
     titles = mongo.db.titles.find()
-    sorted_titles = sorted(titles, key=lambda k: k['imdb_rating'],
-                           reverse=True)
+    sorted_titles = titles.sort('imdb_rating', pymongo.DESCENDING)
     sorted_titles_list = []
     for sorted_title in sorted_titles:
         if not sorted_title['imdb_rating'] == 'N/A':
@@ -357,8 +356,7 @@ def top_imdb():
 @app.route('/top_metacritic')
 def top_metacritic():
     titles = mongo.db.titles.find()
-    sorted_titles = sorted(titles, key=lambda k: k['metascore'],
-                           reverse=True)
+    sorted_titles = titles.sort('metascore', pymongo.DESCENDING)
     sorted_titles_list = []
     for sorted_title in sorted_titles:
         if not sorted_title['metascore'] == 'N/A':
@@ -376,8 +374,7 @@ def top_metacritic():
 @app.route('/top_users')
 def top_users():
     titles = mongo.db.titles.find()
-    sorted_titles = sorted(titles, key=lambda k: k['users_rating'],
-                           reverse=True)
+    sorted_titles = titles.sort('users_rating', pymongo.DESCENDING)
     sorted_titles_list = []
     for sorted_title in sorted_titles:
         if not sorted_title['users_rating'] == 'N/A':
