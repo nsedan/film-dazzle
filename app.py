@@ -125,9 +125,12 @@ def profile():
         username = session['username']
         user_info = mongo.db.users.find_one({'username': username})
         user_reviews = mongo.db.reviews.find({'user': username})
+        sorted_reviews = sorted(user_reviews, key=lambda k: k['_id'],
+                                reverse=True)
+
         return render_template("profile.html", username=username,
                                user_info=user_info,
-                               user_reviews=user_reviews)
+                               user_reviews=sorted_reviews)
     return render_template('index.html')
 
 
@@ -203,7 +206,7 @@ def title(title_id):
 
     # Load Reviews
     imdb_id = title['imdb_id']
-    reviews = list(mongo.db.reviews.find({'imdb_id': imdb_id}))
+    reviews = mongo.db.reviews.find({'imdb_id': imdb_id})
     sorted_reviews = sorted(reviews, key=lambda k: k['_id'], reverse=True)
 
     if not id_exists:

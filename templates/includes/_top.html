@@ -1,6 +1,6 @@
-{% for title in titles %}
 <div class="top-ratings">
-	<ul>
+	<ul class="row">
+    {% for title in titles %}
 		<li>
 			{% set poster = title['poster'] %} {% if poster == 'N/A' %}
 			<img
@@ -27,6 +27,6 @@
                     />{{title.metascore}}</span>
 				</div>
 		</li>
+        {% endfor%}
 	</ul>
 </div>
-{% endfor%}
