@@ -4,12 +4,19 @@
 
 ---
 
+![Screenshots](static/images/screenshot.png)
+
+---
+
+## Purpose
+
+This project is aimed at film enthusiasts eager to leave an opinion for a recently released title, as well as to the occasional viewer looking for a next film to enjoy. The site offers a custom rating system, generated from user reviews, the rating from IMDb and Metacritic. This application is completely free and there is no need to be a professional critic to leave a review or rate movies.
+
 ## Features
 
-#### The website has five main features:
-
-- The home page has a coming soon feature for movies, recently reviewed titles and a top 10 box office.
+- The home page has a coming soon section for movies to be released, recently reviewed titles and a top 10 box office.
 - Search movies by title, achieved with the OMDB API, later the titles are stored in MongoDB.
+- A register and login to allow the user to fully interact with the site.
 - Leave a review with a rating system, with full CRUD functionality.
 - Randomize feature, allow the user to find a random title from the DB.
 - A worldwide box office success ranking.
@@ -68,6 +75,22 @@ For code validation [w3 Validation Service](https://w3.org/) was used for HTML a
 - Tablet was tested with Chrome developer tools.
 - Also, the site was tested on Firefox and Microsoft Edge.
 
+## Contribute
+All contributions are welcomed and encouraged.
+
+### Deploy your own
+To deploy this application on Heroku using GitHub and MongoDB follow this instruction:
+
+- Clone the repository.
+- Install the necessary dependencies using "pip3 install -r requirments.txt".
+- Get a API key from [OMDb](http://www.omdbapi.com/)
+- Get a API key from [YouTube Data API](https://developers.google.com/youtube/v3/getting-started)
+- Create a [MongoDB](https://www.mongodb.com/) database with the same naming conventions which can be found in app.py. 
+- Create a file in the main directory called ‘env.py’ based on the ‘env.example.py’ and add all your environment variables. Don’t forget to add a secret key for your app.
+- Create a [Heroku](https://www.heroku.com/) app and connect it to your GitHub repo. In Heroku (App > Settings > GitHub) to complete the connection.
+- Add your environment variables here as well, on the “Config Vars” section.
+- Complete a commit, push it to GitHub and using ‘git push heroku master’ command push it to Heroku.
+
 ## Credits
 
 - To [w3shools](https://www.w3schools.com/)
@@ -84,4 +107,3 @@ I received inspiration for this project from:
 - [IMDb](https://www.imdb.com/)
 - [Rotten Tomatoes](https://www.rottentomatoes.com/)
 - [Metacritic](https://www.metacritic.com/)
-
