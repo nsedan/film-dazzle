@@ -84,11 +84,10 @@ def login():
 
         users = mongo.db.users
         user_exists = users.find_one({'username': get_username})
-        user_password = user_exists['password']
 
         if user_exists:
             if bcrypt.hashpw(get_password.encode('utf-8'),
-                             user_password) == user_password:
+                             user_exists['password']) == user_exists['password']:
                 session['username'] = get_username
                 return redirect(url_for('index'))
 
