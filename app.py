@@ -1,7 +1,7 @@
 import os
 import random
-from datetime import datetime
 import requests
+from datetime import datetime
 
 import omdb
 import bcrypt
@@ -84,10 +84,11 @@ def login():
 
         users = mongo.db.users
         user_exists = users.find_one({'username': get_username})
+        user_password = user_exists['password']
 
         if user_exists:
             if bcrypt.hashpw(get_password.encode('utf-8'),
-                             user_exists['password']) == user_exists['password']:
+                             user_password) == user_password:
                 session['username'] = get_username
                 return redirect(url_for('index'))
 
@@ -428,4 +429,4 @@ def not_found(e):
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=True)
+            debug=bool(os.environ.get('DEBUG')))

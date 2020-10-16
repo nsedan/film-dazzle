@@ -88,7 +88,7 @@ To deploy this application on Heroku using GitHub and MongoDB follow this instru
 - Create a [MongoDB](https://www.mongodb.com/) database with the same naming conventions which can be found in app.py. 
 - Create a file in the main directory called ‘env.py’ based on the ‘env.example.py’ and add all your environment variables. Don’t forget to add a secret key for your app.
 - Create a [Heroku](https://www.heroku.com/) app and connect it to your GitHub repo. In Heroku (App > Settings > GitHub) to complete the connection.
-- Add your environment variables here as well, on the “Config Vars” section.
+- Add your environment variables on Heroku as well, on the “Config Vars” section. When adding the DEBUG key, leave the value empty to set it to False.
 - Complete a commit, push it to GitHub and using ‘git push heroku master’ command push it to Heroku.
 
 ## Credits

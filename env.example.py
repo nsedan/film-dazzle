@@ -10,3 +10,6 @@ os.environ["YOUTUBE_API_KEY"] = youtube_api_key
 
 secret_key = ''
 os.environ["SECRET_KEY"] = secret_key
+
+DEBUG = "True"
+os.environ["DEBUG"] = DEBUG
