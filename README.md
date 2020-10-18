@@ -12,6 +12,14 @@
 
 This project is aimed at film enthusiasts eager to leave an opinion for a recently released title, as well as to the occasional viewer looking for a next film to enjoy. The site offers a custom rating system, generated from user reviews, the rating from IMDb and Metacritic. This application is completely free and there is no need to be a professional critic to leave a review or rate movies.
 
+#### User Stories
+
+- As a user I want to be able to know more details about a particular movie.
+- As a user I want to be able to look for a movie and see what other people think about it.
+- As a user I want to be able to give my opinion for a movie a saw.
+- As a user I want to be able to leave a rating for a movie even if I don't want to give a full review.
+- As a user I want to be able to edit or delete previous entries without issue.
+
 ## Features
 
 - The home page has a coming soon section for movies to be released, recently reviewed titles and a top 10 box office.
