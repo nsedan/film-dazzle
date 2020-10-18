@@ -70,7 +70,7 @@ Additionally, the next technologies were used:
 
 ## Testing
 
-The main objective was to test that all routes and templates worked correctly. Also some tests were made to check the responsiveness of the site, mainly on how the different devices adapt to the changes in the layout. 
+The main objective was to test that all routes and templates worked correctly. Also some tests were made to check the responsiveness of the site, mainly on how the different devices adapt to the changes in the layout. Python unit testing was considered but proved unnecessary as very few functions return a specific int or string result and all routes were manually tested.
 
 #### Code Validation
 
