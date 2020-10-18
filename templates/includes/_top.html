@@ -1,32 +1,26 @@
 <div class="top-ratings">
-	<ul class="row">
-    {% for title in titles %}
-		<li>
-			{% set poster = title['poster'] %} {% if poster == 'N/A' %}
-			<img
-                class="poster"
-                src="https://www.freeiconspng.com/uploads/no-image-icon-4.png"
-                alt="no image was found"
-            />
-            {% else %} {% set show = poster %}
-			<a href="{{url_for('add_title', users_choice=title.imdb_id)}}"><img class="poster" src="{{show}}" alt="movie poster"
-            /></a>
-				{% endif %}
-				<p>{{title.title}} <small>({{title.year}})</small></p>
-				<div class="title-ratings">
-					<span><img src="{{ url_for('static', filename='favicon/favicon.png') }}" alt="Film Dazzle">{{title.users_rating}}</span>
-					<span
-                    ><img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/IMDb_Logo_Square.svg/1200px-IMDb_Logo_Square.svg.png"
-                        alt="imdb"
-                    />{{title.imdb_rating}}</span>
-					<span
-                    ><img
-                        src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Metacritic_M.png"
-                        alt="metascore"
-                    />{{title.metascore}}</span>
-				</div>
-		</li>
-        {% endfor%}
-	</ul>
-</div>
+    <ul class="row">
+        {% for title in titles %}
+            <li>
+                <div>
+                    {% set poster = title['poster'] %}
+                    {% if poster == 'N/A' %}
+                        <img class="poster" src="https://www.freeiconspng.com/uploads/no-image-icon-4.png" alt="no image was found"/>
+                    {% else %}
+                        {% set show = poster %}
+                        <a href="{{ url_for('add_title', users_choice=title.imdb_id) }}"><img class="poster" src="{{ show }}" alt="movie poster"/></a>
+                    {% endif %}
+                    <p>{{ title.title }}
+                        <small>({{ title.year }})</small>
+                    </p>
+                    <div class="title-ratings">
+                        <span>
+                            <img src="{{ url_for('static', filename='favicon/favicon.png') }}" alt="Film Dazzle">{{ title.users_rating }}</span>
+                            <span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/IMDb_Logo_Square.svg/1200px-IMDb_Logo_Square.svg.png" alt="imdb"/>{{ title.imdb_rating }}</span>
+                            <span><img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Metacritic_M.png" alt="metascore"/>{{ title.metascore }}</span>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>

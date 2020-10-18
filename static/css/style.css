@@ -161,13 +161,9 @@ footer p {
   max-width: 18rem;
   padding: 1.5rem 1rem 1rem 1rem;
 }
-.result-info ul li:last-of-type {
-  margin-bottom: 3rem;
-}
 .result-info ul li .poster {
   width: 100%;
-  height: 100%;
-  max-height: 25rem;
+  height: 24rem;
   border-radius: 5%;
 }
 .result-info ul li p {
@@ -331,10 +327,7 @@ footer p {
 }
 .top-ratings ul li {
   max-width: 18rem;
-  padding: 1.5rem 1rem 2.5rem 1rem;
-}
-.top-ratings ul li:last-of-type {
-  margin-bottom: 3rem;
+  padding: 1.5rem 1rem 1rem 1rem;
 }
 .top-ratings ul li .poster {
   width: 100%;

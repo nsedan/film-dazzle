@@ -78,6 +78,8 @@ def index():
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
+    '''Login checks if the user exists and if the
+       user/password combination is correct'''
     if request.method == 'POST':
         get_username = request.form.get('username')
         get_password = request.form.get('password')
@@ -97,6 +99,7 @@ def login():
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
+    '''Register checks if the user exists and creates a new user on MongoDB'''
     get_username = request.form.get('username')
     get_password = request.form.get('password')
 
@@ -121,6 +124,7 @@ def register():
 
 @app.route("/profile")
 def profile():
+    '''Profile is only available if there is a user in session'''
     if "username" in session:
         username = session['username']
         user_info = mongo.db.users.find_one({'username': username})
@@ -136,12 +140,14 @@ def profile():
 
 @app.route('/logout')
 def logout():
+    '''Logout is only available if there is a user in session'''
     session.pop('username', None)
     return redirect(url_for('index'))
 
 
 @app.route('/search', methods=["GET", "POST"])
 def search():
+    '''Takes the input from a user search to the result route'''
     if request.method == "POST":
         user_search = request.form.get('query')
         return redirect(url_for('result', query=user_search.lower()))
@@ -151,6 +157,7 @@ def search():
 
 @app.route('/search/<query>')
 def result(query):
+    '''Request the user search to OMDB API to render results'''
     data_request = omdb.search_movie(query, page=1)
     if data_request:
         return render_template("results.html",
@@ -161,6 +168,9 @@ def result(query):
 
 @app.route('/add_title/<users_choice>')
 def add_title(users_choice):
+    '''When user clicks on a particular result this checks if the
+       movies is already on MongoDB to avoid duplicates, reduce
+       the data to remove unwanted information and add the movie trailer.'''
     data_request = omdb.imdbid(f'{users_choice}')
     data_reduced = data_request
     keys = {
@@ -170,7 +180,7 @@ def add_title(users_choice):
     for key in keys:
         del data_reduced[key]
 
-    #  Youtube API
+    #  Request to Youtube API
     search_url = 'https://www.googleapis.com/youtube/v3/search'
     search_params = {
         'key': YOUTUBE_API_KEY,
@@ -201,6 +211,8 @@ def add_title(users_choice):
 
 @app.route('/title/<title_id>')
 def title(title_id):
+    '''Render a particular title with its reviews, checks if there is a user
+       in session and if this user has already left a review for this title.'''
     title = mongo.db.titles.find_one({'imdb_id': title_id})
     id_exists = title['imdb_id']
 
@@ -227,6 +239,8 @@ def title(title_id):
 
 @app.route('/title/<title_id>/review/create', methods=["GET", "POST"])
 def create(title_id):
+    '''Request to create a review for a movie a push it to MongoDB
+       and update the title rating'''
     if request.method == "POST":
         title = mongo.db.titles.find_one({'imdb_id': title_id})
         imdb_id = title['imdb_id']
@@ -268,6 +282,8 @@ def create(title_id):
 
 @app.route('/review/<review_id>')
 def show(review_id):
+    '''Request to show a particular review. This checks if the user is the same
+       that created the review to later allow edit and delete options.'''
     review = mongo.db.reviews.find_one({'review_id': review_id})
     review_id = review['review_id']
     imdb_id = review['imdb_id']
@@ -283,6 +299,8 @@ def show(review_id):
 
 @app.route('/review/<title_id>/<review_id>')
 def destroy(review_id, title_id):
+    '''Request to delete a review, only if the user created it,
+       and updates title rating'''
     review = mongo.db.reviews.delete_one({'review_id': review_id})
 
     # Update rating and push to Mongo
@@ -304,6 +322,7 @@ def destroy(review_id, title_id):
 
 @app.route('/review/<review_id>/edit')
 def edit(review_id):
+    '''Render review form to edit, passing the selected review values'''
     review = mongo.db.reviews.find_one({'review_id': review_id})
     return render_template('review_edit.html', review=review)
 
@@ -338,6 +357,7 @@ def update(review_id, title_id):
 
 @app.route('/top_imdb')
 def top_imdb():
+    '''Sort titles by IMDb rating a renders the first 10.'''
     titles = mongo.db.titles.find()
     sorted_titles = titles.sort('imdb_rating', pymongo.DESCENDING)
     sorted_titles_list = []
@@ -355,6 +375,7 @@ def top_imdb():
 
 @app.route('/top_metacritic')
 def top_metacritic():
+    '''Sort titles by Metacritic rating a renders the first 10.'''
     titles = mongo.db.titles.find()
     sorted_titles = titles.sort('metascore', pymongo.DESCENDING)
     sorted_titles_list = []
@@ -373,6 +394,7 @@ def top_metacritic():
 
 @app.route('/top_users')
 def top_users():
+    '''Sort titles by users rating a renders the first 10.'''
     titles = mongo.db.titles.find()
     sorted_titles = titles.sort('users_rating', pymongo.DESCENDING)
     sorted_titles_list = []
@@ -390,6 +412,7 @@ def top_users():
 
 @app.route('/box_office')
 def box_office():
+    '''Render Box Office data from MongoDB and allows pagination'''
     boxoffice = mongo.db.boxoffice.find()
     offset = request.args.get('offset', 0, type=int)
     page = 25
@@ -404,7 +427,7 @@ def box_office():
 
 @app.route('/randomize')
 def randomize():
-
+    '''Request a random movie title and redirect to its template.'''
     def random_title():
         titles = mongo.db.titles.find()
         titles_id_list = []
@@ -419,6 +442,7 @@ def randomize():
 
 @app.errorhandler(404)
 def not_found(e):
+    '''Render 404 error template'''
     if 'username' in session:
         username = session['username']
         return render_template("404.html", username=username)

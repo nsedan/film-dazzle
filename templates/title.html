@@ -101,20 +101,16 @@
                     {% endif %}
                 </div>
                 <div class="reviews col-12 col-lg-5">
+                    <h5>Latest Reviews</h5>
+                    <hr/>
                     {% if not reviews %}
-                        <h5>Latest Reviews</h5>
-                        <hr/>
                         <p>There are no reviews to show yet.</p>
-                    </div>
-                    <div class="reviews col-12 col-lg-5">
                     {% else %}
-                        <h5>Latest Reviews</h5>
-                        <hr/>
-                        {% set count = namespace(value=0) %}
-                        {% for review in reviews %}
-                            {% if count.value < 5 %}
-                                {% set count.value = count.value + 1 %}
-                                <ul class="list-group">
+                        <ul class="list-group">
+                            {% set count = namespace(value=0) %}
+                            {% for review in reviews %}
+                                {% if count.value < 5 %}
+                                    {% set count.value = count.value + 1 %}
                                     <li>
                                         <a href="{{ url_for('show', review_id=review.review_id) }}">
                                             <p>{{ review.title }}
@@ -125,9 +121,9 @@
                                             </p>
                                         </a>
                                     </li>
-                                </ul>
-                            {% endif %}
-                        {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
                     {% endif %}
                 </div>
             </div>

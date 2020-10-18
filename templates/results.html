@@ -1,28 +1,29 @@
-{% extends 'index.html' %} {% block body %}
-<main class="container">
-  <h3>
-    Top results for "<span style="text-transform: capitalize">{{query}}</span>"
-  </h3>
-  <hr />
-  <div class="result-info">
-    <ul class="row">
-      {% for result in data_request %}
-      <li>
-        {% set poster = result['poster'] %} {% if poster == 'N/A' %}
-        <img
-          class="poster"
-          src="https://www.freeiconspng.com/uploads/no-image-icon-4.png"
-          alt="no image was found"
-        />
-        {% else %} {% set show = poster %}
-        <a href="{{url_for('add_title', users_choice=result.imdb_id)}}"
-          ><img src="{{show}}" class="poster" alt="movie poster"
-        /></a>
-        {% endif %}
-        <p>{{result.title}} <small>({{result.year}})</small></p>
-      </li>
-      {% endfor%}
-    </ul>
-  </div>
-</main>
-{% endblock%}
+{% extends 'index.html' %}
+{% block body %}
+    <main class="container">
+        <h3>
+            Top results for "<span style="text-transform: capitalize">{{ query }}</span>"
+        </h3>
+        <hr/>
+        <div class="result-info">
+            <ul class="row">
+                {% for result in data_request %}
+                    <li>
+                        <div>
+                            {% set poster = result['poster'] %}
+                            {% if poster == 'N/A' %}
+                                <img class="poster" src="https://www.freeiconspng.com/uploads/no-image-icon-4.png" alt="no image was found"/>
+                            {% else %}
+                                {% set show = poster %}
+                                <a href="{{ url_for('add_title', users_choice=result.imdb_id) }}"><img src="{{ show }}" class="poster" alt="movie poster"/></a>
+                            {% endif %}
+                            <p>{{ result.title }}
+                                <small>({{ result.year }})</small>
+                            </p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </main>
+{% endblock %}
