@@ -135,7 +135,7 @@ def profile():
         return render_template("profile.html", username=username,
                                user_info=user_info,
                                user_reviews=sorted_reviews)
-    return render_template('index.html')
+    return redirect(url_for('index'))
 
 
 @app.route('/logout')
@@ -152,7 +152,7 @@ def search():
         user_search = request.form.get('query')
         return redirect(url_for('result', query=user_search.lower()))
     else:
-        return render_template("index.html")
+        return redirect(url_for('index'))
 
 
 @app.route('/search/<query>')
@@ -171,7 +171,7 @@ def add_title(users_choice):
     '''When user clicks on a particular result this checks if the
        movies is already on MongoDB to avoid duplicates, reduce
        the data to remove unwanted information and add the movie trailer.'''
-    data_request = omdb.imdbid(f'{users_choice}')
+    data_request = omdb.imdbid(users_choice)
     data_reduced = data_request
     keys = {
         "dvd", "website", 'ratings', 'imdb_votes',
@@ -277,7 +277,7 @@ def create(title_id):
         imdb_id = title['imdb_id']
         return redirect(url_for('title', title_id=imdb_id))
     else:
-        return render_template("index.html")
+        return redirect(url_for('index'))
 
 
 @app.route('/review/<review_id>')
@@ -415,8 +415,8 @@ def box_office():
     '''Render Box Office data from MongoDB and allows pagination'''
     boxoffice = mongo.db.boxoffice.find()
     offset = request.args.get('offset', 0, type=int)
-    page = 25
-    boxoffice_limited = boxoffice.skip(offset).limit(page)
+    limit = 25
+    boxoffice_limited = boxoffice.skip(offset).limit(limit)
     if 'username' in session:
         username = session['username']
         return render_template('box_office.html', boxoffice=boxoffice_limited,

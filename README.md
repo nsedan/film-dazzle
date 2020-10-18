@@ -60,9 +60,13 @@ Additionally, the next technologies were used:
 
   - This project uses **Heroku** to host the app.
 
+## Testing
+
+The main objective was to test that all routes and templates worked correctly. Also some tests were made to check the responsiveness of the site, mainly on how the different devices adapt to the changes in the layout. 
+
 #### Code Validation
 
-For code validation [w3 Validation Service](https://w3.org/) was used for HTML and CSS. And [JSHint](https://jshint.com/) for JS.
+For code validation [w3 Validation Service](https://w3.org/) was used for HTML and CSS. For Python [ExtendsClass](https://extendsclass.com/python-tester.html) and [JSHint](https://jshint.com/) for JS.
 
 #### The devices that this site was test were:
 
@@ -74,6 +78,19 @@ For code validation [w3 Validation Service](https://w3.org/) was used for HTML a
 - Desktop PC, 27"
 - Tablet was tested with Chrome developer tools.
 - Also, the site was tested on Firefox and Microsoft Edge.
+
+#### User Tests: 
+
+Several user tests were made throughout the project to reveal errors or to add/change features:
+
+- A user is requested to search for a movie and click a particular choice to render more information about it.
+- A user is requested to leave a review for a movie, at this stage there is no login feature in place.
+- Randomize feature is added after a user suggested a way to find a random movie.
+- At this stage a complete test was done with a few testers, to avoid broken links and check responsiveness.
+- A user is requested to register to leave a review and click on it to read more. No issues were found but a new rating style was added at this stage to make it more user friendly.
+- After adding edit and delete features, this was tested with several users.
+- A final run to test routing, it was requested to specifically try the review system to add, read, edit and delete.
+
 
 ## Contribute
 All contributions are welcomed and encouraged.
