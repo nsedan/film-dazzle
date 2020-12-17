@@ -89,8 +89,9 @@ def login():
         user_exists = users.find_one({'username': get_username})
 
         if user_exists:
+            usr_pass = user_exists['password']
             if bcrypt.hashpw(get_password.encode('utf-8'),
-                             user_exists['password']) == user_exists['password']:
+                             usr_pass) == usr_pass:
                 session['username'] = get_username
                 return redirect(url_for('index'))
 
